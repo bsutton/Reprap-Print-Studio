@@ -1,6 +1,10 @@
-This software is licensed under the terms of the ISC software license.
+GNU LESSER GENERAL PUBLIC LICENSE
+		       Version 2.1, February 1999
 
-Copyright (c) 2011, Alex Williams <malexw@hotmail.com>
+Copyright (c) 2011, Brett Sutton <bsutton@noojee.com.au>
+
+This work is a derivative of an original C++ version written by Alex Williams <malexw@hotmail.com>
+
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above

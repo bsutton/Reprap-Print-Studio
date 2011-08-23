@@ -4,8 +4,8 @@ package threedc.github.com;
 
 public class Triangle
 {
-	private Vertex v1_, v2_, v3_;
-	private Vertex norm_;
+	private Vertex v1, v2, v3;
+	private Vertex normal;
 
 	Triangle(Vertex v1, Vertex v2, Vertex v3, Vertex normal)
 	{
@@ -18,48 +18,48 @@ public class Triangle
 
 	public Vertex getNorm()
 	{
-		return norm_;
+		return normal;
 	}
 
 
 	public void setV2(Vertex v2_)
 	{
-		this.v2_ = v2_;
+		this.v2 = v2_;
 	}
 
 
 	public Vertex getV2()
 	{
-		return v2_;
+		return v2;
 	}
 
 
 	public void setV1(Vertex v1_)
 	{
-		this.v1_ = v1_;
+		this.v1 = v1_;
 	}
 
 
 	public Vertex getV1()
 	{
-		return v1_;
+		return v1;
 	}
 
 
 	public void setV3(Vertex v3_)
 	{
-		this.v3_ = v3_;
+		this.v3 = v3_;
 	}
 
 
 	public Vertex getV3()
 	{
-		return v3_;
+		return v3;
 	}
 
 
 	public void setNorm(Vertex norm_)
 	{
-		this.norm_ = norm_;
+		this.normal = norm_;
 	}
 }

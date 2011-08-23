@@ -17,7 +17,6 @@ public class StlbDecoder implements Decoder
 	public StlbDecoder(String path) throws IOException
 	{
 		filePath = new File(path);
-
 		b = new FileBlobBinary(path);
 	}
 

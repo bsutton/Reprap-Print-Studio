@@ -44,26 +44,26 @@ public class ObjEncoder implements Encoder
 	{
 
 		out.write("v ");
-		out.write(t.getV1().x_ + " ");
-		out.write(t.getV1().y_ + " ");
-		out.write(t.getV1().z_ + "\r\n");
+		out.write(t.getV1().getX() + " ");
+		out.write(t.getV1().getY() + " ");
+		out.write(t.getV1().getZ() + "\r\n");
 		out.write("v ");
-		out.write(t.getV2().x_ + " ");
-		out.write(t.getV2().y_ + " ");
-		out.write(t.getV2().z_ + "\r\n");
+		out.write(t.getV2().getX() + " ");
+		out.write(t.getV2().getY() + " ");
+		out.write(t.getV2().getZ() + "\r\n");
 		out.write("v ");
-		out.write(t.getV3().x_ + " ");
-		out.write(t.getV3().y_ + " ");
-		out.write(t.getV3().z_ + "\r\n");
+		out.write(t.getV3().getX() + " ");
+		out.write(t.getV3().getY() + " ");
+		out.write(t.getV3().getZ() + "\r\n");
 	}
 
 	void WriteNormal(Writer out, Vertex n) throws IOException
 	{
 
 		out.write("n ");
-		out.write(n.x_ + " ");
-		out.write(n.y_ + " ");
-		out.write(n.z_ + "\r\n");
+		out.write(n.getX() + " ");
+		out.write(n.getY() + " ");
+		out.write(n.getZ() + "\r\n");
 	}
 
 	void WriteFace(Writer out, int i) throws IOException
