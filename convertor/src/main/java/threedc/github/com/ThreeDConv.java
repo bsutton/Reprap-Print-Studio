@@ -2,8 +2,6 @@ package threedc.github.com;
 
 import java.io.IOException;
 
-import com.sun.org.apache.xml.internal.serialize.Printer;
-
 import threedc.github.com.model.Model;
 import threedc.github.com.model.PrintableObject;
 
