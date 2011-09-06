@@ -1,3 +1,8 @@
+3dc allows the conversion between a number of populate 3d CAD file formats.
+
+3dc was specifically written to support work with the reprap 3d printer and is part of the
+multi-material tool change.
+
 Compiling
 -------------------
 Run
@@ -11,7 +16,7 @@ Usage
 $ ./run.sh input_type input_file output_type output_file
 
 Where input_type and output_type is one of:
-"stl", "stlb", or "obj"
+amf, stl, stlb, or obj
 
 Known Issues
 -------------------
