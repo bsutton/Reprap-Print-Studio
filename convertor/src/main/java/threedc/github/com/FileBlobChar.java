@@ -6,46 +6,45 @@ import java.io.FileReader;
 import java.io.IOException;
 
 //A wrapper for the binary contents of a file. Makes the bytes of a file available like an array.
-
 public class FileBlobChar
 {
 
-	File file_path_;
-	long file_size_;
-	char[] bytes_;
+	File filePath;
+	long fileSize;
+	char[] bytes;
 
 	FileBlobChar(String path) throws IOException
 	{
-		file_path_ = new File(path);
-		file_size_ = 0;
-		bytes_ = null;
+		filePath = new File(path);
+		fileSize = 0;
+		bytes = null;
 		Init();
 	}
 
 	long Size()
 	{
-		return file_size_;
+		return fileSize;
 	}
 
 	void Init() throws IOException
 	{
-		FileReader fr = new FileReader(file_path_);
-		file_size_ = file_path_.length();
-		bytes_ = new char[(int) file_size_];
-		fr.read(bytes_, 0, (int) file_size_);
+		FileReader fr = new FileReader(filePath);
+		fileSize = filePath.length();
+		bytes = new char[(int) fileSize];
+		fr.read(bytes, 0, (int) fileSize);
 	}
 
 	public char at(int ni) throws EOFException
 	{
-		if (ni >= file_size_)
+		if (ni >= fileSize)
 			throw new EOFException();
 		
-		return bytes_[ni];
+		return bytes[ni];
 	}
 
 	public String getString(int startOfString, int length)
 	{
-		return new String(bytes_, startOfString, length);
+		return new String(bytes, startOfString, length);
 	}
 
 }

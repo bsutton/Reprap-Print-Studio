@@ -10,7 +10,6 @@ import java.nio.charset.Charset;
 
 public class StlbEncoder implements Encoder
 {
-
 	File filePath;
 
 	public boolean encode(Model model, String output_path) throws IOException
@@ -59,9 +58,9 @@ public class StlbEncoder implements Encoder
 	// point number format
 	void WriteStlbVertex(OutputStream out, Vertex v) throws IOException
 	{
-		writeFloat(out, v.x_);
-		writeFloat(out, v.y_);
-		writeFloat(out, v.z_);
+		writeFloat(out, v.getX());
+		writeFloat(out, v.getY());
+		writeFloat(out, v.getZ());
 	}
 
 	private void writeFloat(OutputStream out, float value) throws IOException

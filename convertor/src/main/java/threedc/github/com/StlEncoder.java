@@ -54,11 +54,11 @@ public class StlEncoder implements Encoder
 		DecimalFormat nf15 = new DecimalFormat();
 		nf15.setMinimumFractionDigits(15);
 		nf15.setMaximumFractionDigits(15);
-		out.write(nf15.format(v.x_));
+		out.write(nf15.format(v.getX()));
 		out.write(" ");
-		out.write(nf15.format(v.y_));
+		out.write(nf15.format(v.getY()));
 		out.write(" ");
-		out.write(nf15.format(v.z_));
+		out.write(nf15.format(v.getZ()));
 		out.write("\r\n");
 
 	}

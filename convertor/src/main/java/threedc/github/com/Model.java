@@ -10,7 +10,7 @@ public class Model
 {
 	String description;
 	
-	Vector<Triangle> tris_ = new Vector<Triangle>();
+	Vector<Triangle> triangles = new Vector<Triangle>();
 	
 	Model(String description)
 	{
@@ -19,17 +19,17 @@ public class Model
 
 	int triangle_count()
 	{
-		return tris_.size();
+		return triangles.size();
 	}
 
 	Triangle get_triangle(int i)
 	{
-		return tris_.elementAt(i);
+		return triangles.elementAt(i);
 	}
 
 	void add_triangle(Triangle t)
 	{
-		tris_.add(t);
+		triangles.add(t);
 	}
 
 	public String getDescription()
