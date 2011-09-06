@@ -1,15 +1,20 @@
-package threedc.github.com;
+package threedc.github.com.model;
 
 //Basic object for representing a vertex in 3 dimensions
 public class Vertex
 {
 	private float x, y, z;
 
-	Vertex(float x, float y, float z)
+	public Vertex(float x, float y, float z)
 	{
 		this.setX(x);
 		this.setY(y);
 		this.setZ(z);
+	}
+
+	public Vertex()
+	{
+		// TODO Auto-generated constructor stub
 	}
 
 	public void setX(float x)

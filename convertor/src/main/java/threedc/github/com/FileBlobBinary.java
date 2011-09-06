@@ -17,7 +17,7 @@ public class FileBlobBinary
 
 	private RandomAccessFile ras;
 
-	FileBlobBinary(String path) throws IOException
+	public FileBlobBinary(String path) throws IOException
 	{
 		setFilePath(new File(path));
 		
@@ -30,7 +30,7 @@ public class FileBlobBinary
 		ras.close();
 	}
 	
-	long size()
+	public long size()
 	{
 		return fileSize;
 	}

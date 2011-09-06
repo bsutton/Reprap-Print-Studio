@@ -2,6 +2,8 @@ package threedc.github.com;
 
 import java.io.IOException;
 
+import threedc.github.com.model.Model;
+
 //Base encoder class that all encoders should extend. Turns Models into files.
 
 abstract public interface Encoder
