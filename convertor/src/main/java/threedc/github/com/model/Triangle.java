@@ -4,7 +4,13 @@ package threedc.github.com.model;
 
 public class Triangle
 {
+	//The three vertexes in counter-clockwise order as viewed from outside geometry.
 	private Vertex v1, v2, v3;
+	
+	// The normal is generally used by graphic rendering engines to determine which direction
+	// the triangle is facing. Some formats (e.g. amf) do not store the normal as it can be 
+	// calculated on the fly.
+	// The triangle normal should not be confused with the vertex normal which is used to define a curved line.
 	private Vertex normal;
 
 	public Triangle(Vertex v1, Vertex v2, Vertex v3, Vertex normal)
@@ -18,16 +24,6 @@ public class Triangle
 
 	public Triangle()
 	{
-	}
-
-
-	public Vertex getNorm()
-	{
-		if (normal == null)
-			//normal = calculateNormal(v1,v2,v3);
-			normal = new Vertex(0,0,0);
-		
-		return normal;
 	}
 
 
@@ -72,6 +68,15 @@ public class Triangle
 		this.normal = norm_;
 	}
 	
+	public Vertex getNorm()
+	{
+		if (normal == null)
+			normal = calculateNormal(v1,v2,v3);
+		
+		return normal;
+	}
+
+	
 	
 	// From http://www.linux.com/community/blogs/python-stl-model-loading-and-display-with-opengl.html
 	public Vertex calculateNormal(Vertex p1, Vertex p2, Vertex p3)
@@ -94,5 +99,4 @@ public class Triangle
 				, p1.getZ() * p2.getX() - p2.getZ() * p1.getX()
 				, p1.getX() * p2.getY() - p2.getX() * p1.getY());
 	}
-
 }

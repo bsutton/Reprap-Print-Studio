@@ -4,6 +4,10 @@ package threedc.github.com.model;
 public class Vertex
 {
 	private float x, y, z;
+	
+	// The normal is specific to the AMF file format and should not be confused with a Triangles normal.
+	// The vertex normal allows an AMF file to define a curved line between two vertexes.
+	private float normal;
 
 	public Vertex(float x, float y, float z)
 	{
