@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:simpleType name="hexString">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([a-fA-F0-9]){2}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- one or more sets of RGBA hex values. A single Hex value is 2 hex digits, an RGBA sequence is 4 pairs of hex digits (e.g. 8 
+		digits) -->
+	<xs:simpleType name="rgbaData">
+		<xs:restriction base="hexString">
+			<xs:pattern value="([a-fA-F0-9]{8})+" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="unitType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="mm" /> <!-- Millimetres -->
+			<xs:enumeration value="in" /><!-- Inches -->
+			<xs:enumeration value="m" /> <!-- meters -->
+			<xs:enumeration value="micron" /> <!--micrometers -->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="rgbaType">
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0" />
+			<xs:maxInclusive value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="textureType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="greyscale" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="colorType">
+		<xs:attribute name="r" type="rgbaType" use="required" />
+		<xs:attribute name="g" type="rgbaType" use="required" />
+		<xs:attribute name="b" type="rgbaType" use="required" />
+		<xs:attribute name="a" type="rgbaType" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="metadataType">
+		<xs:attribute name="Type" type="xs:string" use="required" />
+		<xs:attribute name="Value" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:element name="amf">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="object" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="metadata" type="metadataType" minOccurs="0" maxOccurs="unbounded" />
+							<xs:element name="mesh" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="vertices" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="vertex" minOccurs="3" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="coordinates" minOccurs="1" maxOccurs="1">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="x" type="xs:decimal" />
+																			<xs:element name="y" type="xs:decimal" />
+																			<xs:element name="z" type="xs:decimal" />
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="normal" minOccurs="0" maxOccurs="1">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="dx" type="xs:decimal" />
+																			<xs:element name="dy" type="xs:decimal" />
+																			<xs:element name="dz" type="xs:decimal" />
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="color" type="colorType" minOccurs="0" maxOccurs="1" />
+																<xs:element name="texture" minOccurs="0" maxOccurs="1">
+																	<xs:complexType>
+																		<xs:attribute name="id" type="xs:string" use="required" />
+																		<xs:attribute name="x" type="xs:integer" use="required" />
+																		<xs:attribute name="y" type="xs:integer" use="required" />
+																	</xs:complexType>
+																</xs:element>
+															</xs:all>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="region" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="triangle" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="v1" type="xs:integer" minOccurs="0" maxOccurs="1" />
+																<xs:element name="v2" type="xs:integer" minOccurs="0" maxOccurs="1" />
+																<xs:element name="v3" type="xs:integer" minOccurs="0" maxOccurs="1" />
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="edge" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="v1" type="xs:decimal" use="required" />
+															<xs:attribute name="dx1" type="xs:decimal" use="required" />
+															<xs:attribute name="dy1" type="xs:decimal" use="required" />
+															<xs:attribute name="dz1" type="xs:decimal" use="required" />
+															<xs:attribute name="v2" type="xs:integer" use="required" />
+															<xs:attribute name="dx2" type="xs:decimal" use="required" />
+															<xs:attribute name="dy3" type="xs:decimal" use="required" />
+															<xs:attribute name="dz3" type="xs:decimal" use="required" />
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="color" type="colorType" minOccurs="0" maxOccurs="unbounded" />
+													<xs:element name="metadata" type="metadataType" minOccurs="0" maxOccurs="unbounded" />
+												</xs:sequence>
+												<xs:attribute name="materialid" type="xs:string" />
+											</xs:complexType>
+										</xs:element>
+
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="image">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="file">
+											<xs:complexType>
+												<xs:attribute name="url" type="xs:string" use="required" />
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="data" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="row" type="xs:integer" use="required" />
+												<xs:attribute name="values" type="rgbaData" use="required" />
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+									<xs:attribute name="id" type="xs:string" use="required" />
+
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="color" type="colorType" maxOccurs="1" />
+						</xs:choice>
+						<xs:attribute name="id" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="texture" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:base64Binary">
+								<xs:attribute name="id" type="xs:string" use="required" />
+								<xs:attribute name="width" type="xs:string" use="required" />
+								<xs:attribute name="height" type="xs:string" use="required" />
+								<xs:attribute name="depth" type="xs:string" use="required" />
+								<xs:attribute name="type" type="textureType" use="required" />
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="constellation" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="instance" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="id" type="xs:string" use="required" />
+									<xs:attribute name="dx" type="xs:decimal" use="required" />
+									<xs:attribute name="dy" type="xs:decimal" use="required" />
+									<xs:attribute name="dz" type="xs:decimal" use="required" />
+									<xs:attribute name="rx" type="xs:decimal" use="required" />
+									<xs:attribute name="ry" type="xs:decimal" use="required" />
+									<xs:attribute name="rz" type="xs:decimal" use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="metadata" type="metadataType" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="units" type="unitType" default="mm" />
+			<xs:attribute name="version" type="xs:decimal" />
+		</xs:complexType>
+
+	</xs:element>
+
+</xs:schema>
