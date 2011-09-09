@@ -1,1 +1,1 @@
-java -cp target/classes threedc.github.com.App $1 $2 $3 $4
+java -jar target/convertor-1.0.jar $1 $2 $3 $3

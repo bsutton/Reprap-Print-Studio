@@ -104,4 +104,10 @@ public class StlbEncoder implements Encoder
 	{
 		return filePath.getCanonicalPath();
 	}
+	
+	public boolean encode(Model model, File outputPath) throws IOException
+	{
+		return encode(model, outputPath.getAbsolutePath());
+	}
+
 }

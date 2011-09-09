@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Preliminary AMF generated for evaluation purposes only-->
 <!--AMF format may change without notification until approved by ASTM-->
-<amf version="0.44" units="mm">
+<amf version="1.0" units="inch">
   <object id="0">
     <mesh>
       <vertices>
@@ -4291,6 +4291,7 @@
         </vertex>
         <vertex>
           <coordinates>
+
             <x>0.347386</x>
             <y>0.688228</y>
             <z>0.689605</z>
@@ -22614,6 +22615,7 @@
           <v3>408</v3>
         </triangle>
 
+
         <triangle>
           <v1>428</v1>
           <v2>408</v2>
@@ -27270,6 +27272,7 @@
           <v3>1335</v3>
         </triangle>
         <triangle>
+
 
           <v1>1335</v1>
           <v2>1329</v2>

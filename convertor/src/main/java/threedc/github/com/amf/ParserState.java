@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
+import threedc.github.com.model.Units;
 
 public class ParserState
 {
@@ -17,6 +18,8 @@ public class ParserState
 	private float y;
 	private float z;
 	private Vector<Subscriber> subscribers = new Vector<Subscriber>();
+
+	private Units units;
 	
 
 	
@@ -100,6 +103,16 @@ public class ParserState
 			subscriber.notifyObjectComplete(object);
 		}
 		
+	}
+
+	public void setUnits(String units)
+	{
+		this.units = Units.valueOf(units);
+	}
+
+	public Units getUnits()
+	{
+		return this.units;
 	}
 
 

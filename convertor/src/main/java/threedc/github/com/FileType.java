@@ -1,5 +1,6 @@
 package threedc.github.com;
 
+import java.io.File;
 import java.io.IOException;
 
 import threedc.github.com.amf.AmfDecoder;
@@ -26,6 +27,12 @@ public enum FileType
 		{
 			return new StlDecoder(path);
 		}
+
+		@Override
+		public Decoder getDecoder(File from) throws IOException
+		{
+			return getDecoder(from.getAbsolutePath());
+		}
 	},
 	STLB
 	{
@@ -38,7 +45,15 @@ public enum FileType
 		@Override
 		public Decoder getDecoder(String path) throws IOException
 		{
-			return new StlbDecoder(path);		}
+			return new StlbDecoder(path);
+		}
+
+		@Override
+		public Decoder getDecoder(File from) throws IOException
+		{
+			return getDecoder(from.getAbsolutePath());
+		}
+
 	},
 	OBJ
 	{
@@ -51,7 +66,15 @@ public enum FileType
 		@Override
 		public Decoder getDecoder(String path) throws IOException
 		{
-			return new ObjDecoder(path);		}
+			return new ObjDecoder(path);
+		}
+
+		@Override
+		public Decoder getDecoder(File from) throws IOException
+		{
+			return getDecoder(from.getAbsolutePath());
+		}
+
 	},
 	AMF
 	{
@@ -66,9 +89,18 @@ public enum FileType
 		{
 			return new AmfDecoder(path);
 		}
+
+		@Override
+		public Decoder getDecoder(File from) throws IOException
+		{
+			return getDecoder(from.getAbsolutePath());
+		}
+
 	};
 
 	abstract public Encoder getEncoder();
 
 	abstract public Decoder getDecoder(String path) throws IOException;
+
+	abstract public Decoder getDecoder(File from) throws IOException;
 }

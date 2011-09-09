@@ -1,6 +1,5 @@
 package threedc.github.com.amf;
 
-import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 
 public class V1Handler extends Handler

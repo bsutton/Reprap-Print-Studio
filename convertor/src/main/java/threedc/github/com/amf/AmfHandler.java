@@ -3,21 +3,27 @@ package threedc.github.com.amf;
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 
+import threedc.github.com.model.PrintableObject;
+
 public class AmfHandler extends Handler
 {
 	static Logger logger = Logger.getLogger(AmfHandler.class);
 
-	@Override
-	public void endElement(ParserState currentParser, String currentValue)
-	{
-		logger.info("Loaded: " + currentParser.getPrintableObject().getTriangleCount() + " triangles '" +currentParser.getPrintableObject().getId());
+	static int ATTRIBUTE_VERSION = 0;
+	static int ATTRIBUTE_UNITS = 1;
 
+	@Override
+	public void endElement(ParserState currentState, String currentValue)
+	{
 	}
 
 	@Override
-	public ParserState startElement(ParserState currentParser, Attributes attributes)
+	public ParserState startElement(ParserState parserState, Attributes attributes)
 	{
-		return currentParser;
+		parserState = new ParserState();
+		String units = attributes.getValue(ATTRIBUTE_UNITS);
+		parserState.setUnits(units);
+		return parserState;
 	}
 
 }

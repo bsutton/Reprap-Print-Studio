@@ -52,13 +52,15 @@ public class StlDecoder implements Decoder
 		}
 
 		PrintableObject printableObject = new PrintableObject(
-				(tokens.size() > DESCRIPTION ? tokens.elementAt(DESCRIPTION) : ""), PrintableObject.VertexMode.Ordered);
+				(tokens.size() > DESCRIPTION ? tokens.elementAt(DESCRIPTION) : ""), PrintableObject.VertexMode.Sorted);
 
 		Vector<Vertex> cache = new Vector<Vertex>();
 		tokens = nextLine();
 		while (!tokens.isEmpty() && tokens.elementAt(0).compareTo(endsolid) != 0)
 		{
 
+			Vertex triangleNormal = null;
+			
 			if (tokens.elementAt(0).compareTo(facet) == 0)
 			{
 				if (tokens.elementAt(1).compareTo(normal) == 0)
@@ -66,7 +68,7 @@ public class StlDecoder implements Decoder
 					float x = Float.parseFloat(tokens.elementAt(2));
 					float y = Float.parseFloat(tokens.elementAt(3));
 					float z = Float.parseFloat(tokens.elementAt(4));
-					cache.add(printableObject.addVertex(x, y, z));
+					triangleNormal = new Vertex(x, y, z);
 				}
 				else
 				{
@@ -85,6 +87,7 @@ public class StlDecoder implements Decoder
 				throw new InvalidFormatException("Error: STL missing 'outer loop' at line " + lineCount);
 			}
 
+			// Read in the 3 vertex for the triangle.
 			for (int i = 3; i > 0; --i)
 			{
 				tokens = nextLine();
@@ -115,7 +118,7 @@ public class StlDecoder implements Decoder
 				throw new InvalidFormatException("Error: STL missing 'endfacet' at line " + lineCount);
 			}
 
-			Triangle t = new Triangle(cache.elementAt(1), cache.elementAt(2), cache.elementAt(3), cache.elementAt(0));
+			Triangle t = new Triangle(cache.elementAt(0), cache.elementAt(1), cache.elementAt(2), triangleNormal);
 			printableObject.addTriangle(t);
 			triangles++;
 			cache.clear();

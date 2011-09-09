@@ -98,4 +98,10 @@ public class ObjEncoder implements Encoder
 	{
 		return filePath.getCanonicalPath();
 	}
+	
+	public boolean encode(Model model, File outputPath) throws IOException
+	{
+		return encode(model, outputPath.getAbsolutePath());
+	}
+
 }

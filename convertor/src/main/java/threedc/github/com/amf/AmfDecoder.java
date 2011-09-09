@@ -73,6 +73,7 @@ public class AmfDecoder implements Decoder
 			{
 				parser = new XMLParser();
 				parser.parse(stream);
+				model.setUnits(parser.getUnits());
 				for (PrintableObject object : parser.getPrintableObjects())
 					model.addPrintableObject(object);
 			}

@@ -8,6 +8,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import threedc.github.com.model.PrintableObject;
+import threedc.github.com.model.Units;
 
 public class XMLHandler extends DefaultHandler implements Subscriber
 {
@@ -15,7 +16,7 @@ public class XMLHandler extends DefaultHandler implements Subscriber
 	Boolean currentElement = false;
 	StringBuilder currentValue = new StringBuilder();
 
-	ParserState currentState = null;
+	ParserState parserState = null;
 
 	public Vector<PrintableObject> printableObjects = new Vector<PrintableObject>();
 	private XMLParser xmlParser;
@@ -30,27 +31,21 @@ public class XMLHandler extends DefaultHandler implements Subscriber
 		return printableObjects;
 	}
 
-	// public static void setPrintableObjectList(Vector<PrintableObject>
-	// modelList)
-	// {
-	// XMLHandler.printableObjects = modelList;
-	// }
-
 	/**
 	 * Called when tag starts e.g.- <v1>5</v1> qName will contain v1
 	 */
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException
 	{
-		print("start", uri, localName, qName, attributes);
+		//print("start", uri, localName, qName, attributes);
 
 		currentElement = true;
 		currentValue.setLength(0);
 		Element element = Element.valueOf(qName);
-		currentState = element.getHandler().startElement(currentState, attributes);
+		parserState = element.getHandler().startElement(parserState, attributes);
 
 		if (element == Element.object)
-			currentState.subscribe(this);
+			parserState.subscribe(this);
 	}
 
 	/**
@@ -61,11 +56,14 @@ public class XMLHandler extends DefaultHandler implements Subscriber
 	{
 		currentElement = false;
 
-		print("end", uri, localName, qName, null);
+		//print("end", uri, localName, qName, null);
 
 		Element element = Element.valueOf(qName);
 
-		element.getHandler().endElement(currentState, currentValue.toString().trim());
+		element.getHandler().endElement(parserState, currentValue.toString().trim());
+		
+		if (element == Element.amf)
+			xmlParser.setUnits(parserState.getUnits());
 
 	}
 
@@ -86,6 +84,7 @@ public class XMLHandler extends DefaultHandler implements Subscriber
 
 	}
 
+	@SuppressWarnings("unused")
 	private void print(String reason, String uri, String localName, String qName, Attributes attributes)
 	{
 		if (logger.isDebugEnabled())
@@ -94,25 +93,25 @@ public class XMLHandler extends DefaultHandler implements Subscriber
 				return;
 
 			if (qName.compareToIgnoreCase("triangle") == 0)
-				if (this.currentState.getPrintableObject().getTriangleCount() == 1883)
+				if (this.parserState.getPrintableObject().getTriangleCount() == 1883)
 					return;
 				else
 					return;
 
 			if (qName.compareToIgnoreCase("v1") == 0)
-				if (this.currentState.getPrintableObject().getTriangleCount() == 1883)
+				if (this.parserState.getPrintableObject().getTriangleCount() == 1883)
 					return;
 				else
 					return;
 
 			if (qName.compareToIgnoreCase("v2") == 0)
-				if (this.currentState.getPrintableObject().getTriangleCount() == 1883)
+				if (this.parserState.getPrintableObject().getTriangleCount() == 1883)
 					return;
 				else
 					return;
 
 			if (qName.compareToIgnoreCase("v3") == 0)
-				if (this.currentState.getPrintableObject().getTriangleCount() == 1884)
+				if (this.parserState.getPrintableObject().getTriangleCount() == 1884)
 					return;
 				else
 					return;
@@ -145,12 +144,11 @@ public class XMLHandler extends DefaultHandler implements Subscriber
 
 	public void notifyObjectComplete(PrintableObject object)
 	{
-		printableObjects.add(currentState.getPrintableObject());
+		printableObjects.add(parserState.getPrintableObject());
 	}
 
 	public XMLParser getParser()
 	{
 		return xmlParser;
 	}
-
 }

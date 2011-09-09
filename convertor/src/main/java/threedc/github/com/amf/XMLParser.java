@@ -16,11 +16,16 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import threedc.github.com.model.PrintableObject;
+import threedc.github.com.model.Units;
 
 public class XMLParser
 {
 	/** Create Object For SiteList Class */
 	static Vector<PrintableObject> printableObjectList = new Vector<PrintableObject>();
+	
+	// The models units of measure.
+	private Units units;
+
 
 	private static final String AMF_SOURCE = "/home/bsutton/git/3dc/convertor/src/test/resources/rook.amf";
 
@@ -50,6 +55,7 @@ public class XMLParser
 		}
 	}
 
+	
 	public void parse(File source) throws ParserConfigurationException, SAXException, IOException
 	{
 		// First lets validate the xml
@@ -77,5 +83,17 @@ public class XMLParser
 	public Vector<PrintableObject> getPrintableObjects()
 	{
 		return printableObjectList;
+	}
+
+	public Units getUnits()
+	{
+		return this.units;
+	}
+
+
+	public void setUnits(Units units)
+	{
+		this.units = units;
+		
 	}
 }

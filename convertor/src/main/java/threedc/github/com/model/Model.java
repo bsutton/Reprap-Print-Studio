@@ -2,6 +2,8 @@ package threedc.github.com.model;
 
 import java.util.Vector;
 
+import org.apache.log4j.Logger;
+
 /*
  * A model may consist of one or more PrintablObject's
  * 
@@ -10,6 +12,7 @@ import java.util.Vector;
 public class Model
 {
 	Vector<PrintableObject> printableObjects = new Vector<PrintableObject>();
+	private Units units = Units.millimeter;
 
 	public void addPrintableObject(PrintableObject object)
 	{
@@ -22,6 +25,14 @@ public class Model
 		int count = 0;
 		for (PrintableObject object : printableObjects)
 			count += object.getTriangleCount();
+		return count;
+	}
+
+	public int getVertexCount()
+	{
+		int count = 0;
+		for (PrintableObject object : printableObjects)
+			count += object.getVertexCount();
 		return count;
 	}
 
@@ -47,5 +58,37 @@ public class Model
 				maxBound.setZ(Math.max(maxBound.getZ(), vertex.getZ()));
 			}
 		}
+	}
+
+	public Units getUnits()
+	{
+		return this.units;
+	}
+
+	public void setUnits(Units units)
+	{
+		this.units = units;
+	}
+
+	public String getVersion()
+	{
+		return "1.0";
+	}
+
+	public void dump(Logger logger, boolean dumpVectors)
+	{
+		if (dumpVectors)
+		{
+			for (PrintableObject object : this.getPrintableObjects())
+			{
+				for (Vertex vertex : object.getVertexes())
+				{
+					logger.info(vertex.getOrdinal() + "," + vertex.getX() + "," + vertex.getY() + "," + vertex.getZ());
+				}
+			}
+		}
+		logger.info("Model: object:" + printableObjects.size() + " triangles: " + getTriangleCount() + " Verticies:"
+				+ this.getVertexCount());
+
 	}
 }

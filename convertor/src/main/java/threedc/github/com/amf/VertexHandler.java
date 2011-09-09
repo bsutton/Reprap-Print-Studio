@@ -17,7 +17,7 @@ public class VertexHandler extends Handler
 	@Override
 	public ParserState startElement(ParserState currentParser, Attributes attributes)
 	{
-		logger.debug("Vertex ordinal:" + vertex + " line " + (8 + (vertex * 7)));
+		//logger.debug("Vertex ordinal:" + vertex + " line " + (8 + (vertex * 7)));
 		vertex++;
 		currentParser.startVertex();
 		return currentParser;

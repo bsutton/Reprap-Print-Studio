@@ -42,13 +42,7 @@ public class StlEncoder implements Encoder
 
 			out.write("solid output\r\n");
 			
-			int fraction = triangle_count /8;
-			int lower = (int) (fraction * 4.095) + 1;
-			int upper = (int) (fraction * 4.099);
-			
-
 			for (int i = 0; i < triangle_count; ++i)
-//			for (int i = lower; i  < upper ; ++i)
 			{
 				WriteStlTriangle(out, object.getTriangle(i));
 			}
@@ -87,12 +81,17 @@ public class StlEncoder implements Encoder
 		out.write(" ");
 		out.write(nf15.format(v.getZ()));
 		out.write("\r\n");
-
 	}
 
 	public String getFilePath() throws IOException
 	{
 		return filePath.getCanonicalPath();
 	}
+	
+	public boolean encode(Model model, File outputPath) throws IOException
+	{
+		return encode(model, outputPath.getAbsolutePath());
+	}
+
 
 }

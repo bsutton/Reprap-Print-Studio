@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
-import threedc.github.com.amf.YHandler;
 import threedc.github.com.util.SortedVector;
 import threedc.github.com.util.VertexComparator;
 
@@ -75,19 +74,28 @@ public class PrintableObject
 	{
 		return vertexes.elementAt(index);
 	}
+	
+	public Vector<Vertex> getVertexes()
+	{
+		return this.vertexes;
+	}
 
 	public Vertex addVertex(float x, float y, float z)
 	{
 		Vertex vertex = new Vertex(x, y, z);
 		if (this.vertexMode == VertexMode.Sorted)
 		{
-			if (vertexes.contains(vertex))
-				vertex = ((SortedVector<Vertex>)vertexes).find(vertex);
+			Vertex existing = ((SortedVector<Vertex>)vertexes).find(vertex);
+			if (existing != null)
+				vertex = existing;
 			else
 				vertexes.add(vertex);
 		}
 		else
 			vertexes.add(vertex);
+		
+		int ordinal = vertexes.indexOf(vertex);
+		vertex.setOrdinal(ordinal);
 
 		return vertex;
 	}

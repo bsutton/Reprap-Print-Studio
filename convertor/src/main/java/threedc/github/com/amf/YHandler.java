@@ -12,7 +12,7 @@ public class YHandler extends Handler
 	@Override
 	public void endElement(ParserState currentParser, String currentValue)
 	{
-		logger.debug("Vertex y:" + currentValue);
+		//logger.debug("Vertex y:" + currentValue);
 		currentParser.endY(Float.valueOf(currentValue));
 	}
 

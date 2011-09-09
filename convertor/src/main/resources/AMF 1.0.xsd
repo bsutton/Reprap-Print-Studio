@@ -16,9 +16,10 @@
 
 	<xs:simpleType name="unitType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="mm" /> <!-- Millimetres -->
-			<xs:enumeration value="in" /><!-- Inches -->
-			<xs:enumeration value="m" /> <!-- meters -->
+			<xs:enumeration value="millimeter" /> <!-- Millimetres -->
+			<xs:enumeration value="inch" /><!-- Inches -->
+			<xs:enumeration value="feet" /><!-- feet -->
+			<xs:enumeration value="meter" /> <!-- meters -->
 			<xs:enumeration value="micron" /> <!--micrometers -->
 		</xs:restriction>
 	</xs:simpleType>

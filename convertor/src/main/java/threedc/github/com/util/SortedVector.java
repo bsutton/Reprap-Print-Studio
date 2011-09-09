@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Vector;
 
-import threedc.github.com.model.Vertex;
-
 public class SortedVector<T> extends Vector<T>
 {
 	private static final long serialVersionUID = 1L;
@@ -15,30 +13,43 @@ public class SortedVector<T> extends Vector<T>
 	{
 		super();
 		this.comparator = comp;
+
 	}
 
-	public void addElement(T o)
+	public synchronized boolean add(T o)
 	{
-		super.addElement(o);
-		Collections.sort(this, this.comparator); 
+		int index = Collections.binarySearch(this, o, this.comparator);
+		if (index > -1)
+			throw new RuntimeException("Duplicate Vertex");
+
+		super.add(-index - 1, o);
+		
+		return true;
 	}
-	
+
+	/*
+	 * public void addElement(T o) { int index = Collections.binarySearch(this,
+	 * o, this.comparator); if (index > -1) throw new
+	 * RuntimeException("Duplicate Vertex");
+	 * 
+	 * super.add(-index - 1, o); //Collections.sort(this, this.comparator); }
+	 */
+
 	@SuppressWarnings("unchecked")
 	public boolean contains(Object key)
 	{
-		return Collections.binarySearch(this, (T)key, this.comparator) == 0;
+		return Collections.binarySearch(this, (T) key, this.comparator) == 0;
 	}
 
-	@SuppressWarnings("unchecked")
-	public T find(Vertex key)
+	public T find(T key)
 	{
-		int index =  Collections.binarySearch(this, (T)key, this.comparator);
-		
+		int index = Collections.binarySearch(this, key, this.comparator);
+
+		// index = -1;
 		T vertex = null;
-		if (index != -1)
-			this.elementAt(index);
-		
+		if (index > -1)
+			vertex = this.elementAt(index);
+
 		return vertex;
 	}
 }
-

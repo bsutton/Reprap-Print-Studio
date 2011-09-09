@@ -5,16 +5,16 @@ import org.xml.sax.Attributes;
 public class TriangleHandler extends Handler
 {
 	@Override
-	public void endElement(ParserState currentParser, String currentValue)
+	public void endElement(ParserState parserState, String currentValue)
 	{
-		currentParser.endTriangle();
+		parserState.endTriangle();
 	}
 
 	@Override
-	public ParserState startElement(ParserState currentParser, Attributes attributes)
+	public ParserState startElement(ParserState parserState, Attributes attributes)
 	{
-		currentParser.startTriangle();
-		return currentParser;
+		parserState.startTriangle();
+		return parserState;
 	}
 
 
