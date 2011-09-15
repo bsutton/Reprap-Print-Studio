@@ -15,34 +15,11 @@ public class VertexComparator implements Comparator<Vertex>
 
 		if (result == 0)
 			result = Float.compare(lhs.getZ(), rhs.getZ());
-/*		float factor = 10;
-
-		result = (int) (lhs.getX() * factor - rhs.getX() * factor);
+		
 		if (result == 0)
-			result = (int) (lhs.getY() * factor - rhs.getY() * factor);
-		if (result == 0)
-			result = (int) (lhs.getZ() * factor - rhs.getZ() * factor);
-			*/
+			result = Float.compare(lhs.getNormal(), rhs.getNormal());
+		
 		return result;
 	}
 
 }
-
-/*
- * inline bool IsNear(const aVertex& v, double WeldThresh) {
- * if(abs(v.Loc.z-Loc.z)>WeldThresh) return false;
- * if(abs(v.Loc.y-Loc.y)>WeldThresh) return false;
- * if(abs(v.Loc.x-Loc.x)>WeldThresh) return false; return true;};
- * 
- * 
- * //figure out a reasonable weld distance Vec3D p1, p2;
- * pSTL->ComputeBoundingBox(p2, p1); p1 -= p2; aWeldVertex::WeldThresh =
- * min(min(p1.x, p1.y), p1.z)/100000.0;
- * 
- * 
- * // Approximation Algorithms for Lawn Mowing and Milling, by Arkin, Fekete,
- * and Mitchell.
- * 
- * http://education.theage.com.au/cmspage.php?intid=147&intversion=25
- */
-
