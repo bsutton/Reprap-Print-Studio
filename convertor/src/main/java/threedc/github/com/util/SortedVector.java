@@ -41,15 +41,20 @@ public class SortedVector<T> extends Vector<T>
 		return Collections.binarySearch(this, (T) key, this.comparator) == 0;
 	}
 
+	/**
+	 * returns the matching element or null if we did not find a match.
+	 * @param key
+	 * @return
+	 */
 	public T find(T key)
 	{
 		int index = Collections.binarySearch(this, key, this.comparator);
 
 		// index = -1;
-		T vertex = null;
+		T t = null;
 		if (index > -1)
-			vertex = this.elementAt(index);
+			t = this.elementAt(index);
 
-		return vertex;
+		return t;
 	}
 }

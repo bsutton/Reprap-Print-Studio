@@ -17,6 +17,11 @@ public class FileUtility
 			
 	}
 	
+	/** 
+	 * Returns the extension of a filename excluding the dot.
+	 * @param file
+	 * @return
+	 */
 	static public String getExtension(File file)
 	{
 		String extension = "";
@@ -24,7 +29,7 @@ public class FileUtility
 		
 		int delimiterIndex = name.lastIndexOf('.');
 		if (delimiterIndex != -1)
-			extension = name.substring(delimiterIndex);
+			extension = name.substring(delimiterIndex + 1);
 		
 		return extension;
 			
