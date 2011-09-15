@@ -7,7 +7,7 @@ import java.io.Writer;
 import java.text.DecimalFormat;
 
 import threedc.github.com.Encoder;
-import threedc.github.com.model.Model;
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 import threedc.github.com.model.Vertex;
@@ -20,45 +20,75 @@ public class StlEncoder implements Encoder
 
 	File filePath;
 
-	public boolean encode(Model model, String output_path) throws IOException
+	public void encode(ModelImpl model, String output_path) throws IOException
 	{
-		for (PrintableObject object : model.getPrintableObjects())
+		File output = new File(output_path);
+		encode(model, output, true);
+	}
+
+	public void encode(ModelImpl model, File output, boolean split) throws IOException
+	{
+		if (split)
 		{
-			// If there are multiple objects in the model then write each to an
-			// individual file
-			// with the objects 'id' inserted into the file name.
-			if (model.getPrintableObjects().size() > 1)
+
+			for (PrintableObject object : model.getPrintableObjects())
 			{
-				File output = new File(output_path);
-				filePath = new File(output.getParent(), FileUtility.getNamePart(output) + "." + object.getId() + "."
-						+ FileUtility.getExtension(output));
+				// If there are multiple objects in the model then write each to
+				// an
+				// individual file
+				// with the objects 'id' inserted into the file name.
+				if (model.getPrintableObjects().size() > 1)
+				{
+
+					filePath = new File(output.getParent(), FileUtility.getNamePart(output) + "." + object.getId()
+							+ "." + FileUtility.getExtension(output));
+				}
+				else
+					filePath = output;
+
+				int triangle_count = object.getTriangleCount();
+
+				Writer out = new FileWriter(filePath);
+
+				out.write("solid output\r\n");
+
+				for (int i = 0; i < triangle_count; ++i)
+				{
+					WriteStlTriangle(out, object.getTriangle(i));
+				}
+
+				out.write("endsolid output\r\n");
+
+				out.close();
 			}
-			else
-				filePath = new File(output_path);
-
-			int triangle_count = model.getTriangleCount();
-
+		}
+		else
+		{
+			filePath = output;
 			Writer out = new FileWriter(filePath);
 
 			out.write("solid output\r\n");
-			
-			for (int i = 0; i < triangle_count; ++i)
-			{
-				WriteStlTriangle(out, object.getTriangle(i));
-			}
 
+			for (PrintableObject object : model.getPrintableObjects())
+			{
+
+				int triangle_count = object.getTriangleCount();
+
+				for (int i = 0; i < triangle_count; ++i)
+				{
+					WriteStlTriangle(out, object.getTriangle(i));
+				}
+			}
 			out.write("endsolid output\r\n");
 
 			out.close();
 		}
-
-		return true;
 	}
 
 	private void WriteStlTriangle(Writer out, Triangle t) throws IOException
 	{
 		out.write("facet normal ");
-		WriteStlVertex(out, t.getNorm());
+		WriteStlVertex(out, t.getNormal());
 		out.write("   outer loop\r\n");
 		out.write("      vertex ");
 		WriteStlVertex(out, t.getV1());
@@ -87,11 +117,10 @@ public class StlEncoder implements Encoder
 	{
 		return filePath.getCanonicalPath();
 	}
-	
-	public boolean encode(Model model, File outputPath) throws IOException
-	{
-		return encode(model, outputPath.getAbsolutePath());
-	}
 
+	public void encode(ModelImpl model, File outputPath) throws IOException
+	{
+		encode(model, outputPath.getAbsolutePath());
+	}
 
 }
