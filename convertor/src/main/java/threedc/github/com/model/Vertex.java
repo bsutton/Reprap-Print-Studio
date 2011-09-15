@@ -9,7 +9,7 @@ public class Vertex
 	// The vertex normal allows an AMF file to define a curved line between two vertexes.
 	private float normal;
 
-	// The index/position this vertix is stored in the set of verticies.
+	// The index/position this vertex is stored in the set of verticies.
 	private int ordinal;
 
 	public Vertex(float x, float y, float z)
@@ -17,6 +17,20 @@ public class Vertex
 		this.setX(x);
 		this.setY(y);
 		this.setZ(z);
+	}
+
+	public Vertex(float x, float y, float z, float normal)
+	{
+		this.setX(x);
+		this.setY(y);
+		this.setZ(z);
+		this.setNormal(normal);
+	}
+
+	private void setNormal(float normal)
+	{
+		this.normal = normal;
+		
 	}
 
 	public Vertex()
@@ -65,6 +79,22 @@ public class Vertex
 		return this.ordinal;
 	}
 
+	public float getNormal()
+	{
+		return normal;
+	}
+
+	/**
+	 * Creates a deep clone of the Vertex.
+	 *  
+	 * The ordinal is set to -1.
+	 */
+	public Vertex clone()
+	{
+		Vertex vertex = new Vertex(x,y,z, normal);
+		vertex.ordinal = -1;
+		return vertex;
+	}
 
 
 }

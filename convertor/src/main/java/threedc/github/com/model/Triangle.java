@@ -18,7 +18,7 @@ public class Triangle
 		setV1(v1);
 		setV2(v2);
 		setV3(v3);
-		setNorm(normal);
+		setNormal(normal);
 	}
 
 
@@ -63,12 +63,12 @@ public class Triangle
 	}
 
 
-	public void setNorm(Vertex norm_)
+	public void setNormal(Vertex normal)
 	{
-		this.normal = norm_;
+		this.normal = normal;
 	}
 	
-	public Vertex getNorm()
+	public Vertex getNormal()
 	{
 		if (normal == null)
 			normal = calculateNormal(v1,v2,v3);
@@ -76,6 +76,15 @@ public class Triangle
 		return normal;
 	}
 
+	/** 
+	 * Create a deep clone of the triangle.
+	 * 
+	 * Note: the ordinals of each vertex within the triangle will be set to -1.
+	 */
+	public Triangle clone()
+	{
+		return new Triangle(v1.clone(), v2.clone(), v3.clone(), normal.clone());
+	}
 	
 	
 	// From http://www.linux.com/community/blogs/python-stl-model-loading-and-display-with-opengl.html
@@ -99,4 +108,6 @@ public class Triangle
 				, p1.getZ() * p2.getX() - p2.getZ() * p1.getX()
 				, p1.getX() * p2.getY() - p2.getX() * p1.getY());
 	}
+
+
 }

@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
+import threedc.github.com.model.transforms.Transform;
 import threedc.github.com.util.SortedVector;
 import threedc.github.com.util.VertexComparator;
 
@@ -11,7 +12,7 @@ import threedc.github.com.util.VertexComparator;
  * A model is an internal representation of a 3D object.
  */
 
-public class PrintableObject
+public class PrintableObject implements Cloneable
 {
 	static Logger logger = Logger.getLogger(PrintableObject.class);
 	
@@ -83,6 +84,12 @@ public class PrintableObject
 	public Vertex addVertex(float x, float y, float z)
 	{
 		Vertex vertex = new Vertex(x, y, z);
+		return addVertex(vertex);
+	}
+		
+	public Vertex addVertex(Vertex vertex)
+	{
+		
 		if (this.vertexMode == VertexMode.Sorted)
 		{
 			Vertex existing = ((SortedVector<Vertex>)vertexes).find(vertex);
@@ -99,10 +106,18 @@ public class PrintableObject
 
 		return vertex;
 	}
-
-	public void addNormal(Vertex index)
+	
+	public Vertex addVertex(float x, float y, float z, float normal)
 	{
-		normals.add(index);
+		Vertex vertex = new Vertex(x,y,z,normal);
+		return addVertex(vertex);
+		
+	}
+
+
+	public void addNormal(Vertex vertex)
+	{
+		normals.add(vertex);
 
 	}
 
@@ -126,4 +141,74 @@ public class PrintableObject
 	{
 		return vertexes.size();
 	}
+	
+	/**
+	 * performs a deep clone of the PrintableObject.
+	 * The ID is also cloned and needs to be changed when added to a model to ensure that
+	 * it is unique within the target model.
+	 */
+	public PrintableObject clone()
+	{
+		
+		PrintableObject clone = new PrintableObject(this.id, this.vertexMode);
+		for (Vertex vertex : vertexes)
+		{
+			clone.addVertex(vertex.clone());
+		}
+		
+		for (Triangle triangle : triangles)
+		{
+			// We need to find the corresponding vertex in the clone.
+			Vertex v1 = clone.getVertex(triangle.getV1());
+			Vertex v2 = clone.getVertex(triangle.getV2());
+			Vertex v3 = clone.getVertex(triangle.getV3());
+			Vertex normal = clone.getNormal(triangle.getNormal());
+			clone.addTriangle(new Triangle(v1, v2, v3, normal));
+		}
+		
+		for (Vertex normal : normals)
+		{
+			clone.addVertex(normal.clone());
+		}
+		
+		return clone;
+	}
+
+
+	/** Finds the matching vertex in the list of vertexes for this object.
+	 * 
+	 * @param vertex
+	 * @return the matching vertex
+	 */
+	private Vertex getVertex(Vertex vertex)
+	{
+		return ((SortedVector<Vertex>)vertexes).find(vertex);
+	}
+
+	/** Finds the matching vertex in the list of vertexes for this object.
+	 * 
+	 * @param vertex
+	 * @return the matching vertex
+	 */
+	private Vertex getNormal(Vertex normal)
+	{
+		return ((SortedVector<Vertex>)normals).find(normal);
+	}
+
+
+	public void setID(String newID)
+	{
+		this.id = newID;
+	}
+
+	public void transform(Transform transform)
+	{
+		for (Vertex vertex : vertexes)
+		{
+			transform.apply(vertex);
+		}
+
+	}
+
+
 }
