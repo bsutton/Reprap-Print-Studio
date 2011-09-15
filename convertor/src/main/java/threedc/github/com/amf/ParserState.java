@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 import threedc.github.com.model.Units;
@@ -19,13 +20,12 @@ public class ParserState
 	private float z;
 	private Vector<Subscriber> subscribers = new Vector<Subscriber>();
 
-	private Units units;
-	
+	final private ModelImpl model;
 
 	
-	public void setPrintableObject(PrintableObject object)
+	public ParserState(ModelImpl model)
 	{
-		currentObject = object;
+		this.model = model;
 	}
 
 	public void startTriangle()
@@ -107,12 +107,19 @@ public class ParserState
 
 	public void setUnits(String units)
 	{
-		this.units = Units.valueOf(units);
+		model.setUnits(Units.valueOf(units));
 	}
 
-	public Units getUnits()
+	public void setVersion(String version)
 	{
-		return this.units;
+		model.setVersion(version);
+	}
+
+	public void addPrintableObject(PrintableObject printableObject)
+	{
+		currentObject = printableObject;
+		model.addPrintableObject(printableObject);
+		
 	}
 
 

@@ -15,24 +15,29 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
-import threedc.github.com.model.Units;
 
 public class XMLParser
 {
 	/** Create Object For SiteList Class */
 	static Vector<PrintableObject> printableObjectList = new Vector<PrintableObject>();
 	
-	// The models units of measure.
-	private Units units;
-
+	private ModelImpl model;
 
 	private static final String AMF_SOURCE = "/home/bsutton/git/3dc/convertor/src/test/resources/rook.amf";
+
+	public XMLParser(ModelImpl model)
+	{
+		this.model = model;
+	}
+
 
 	static public void main(String args[])
 
 	{
-		XMLParser parser = new XMLParser();
+		ModelImpl model = new ModelImpl();
+		XMLParser parser = new XMLParser(model);
 		try
 		{
 			parser.parse(new File(AMF_SOURCE));
@@ -73,27 +78,8 @@ public class XMLParser
 		XMLReader xr = sp.getXMLReader();
 		
 		/** Create handler to handle XML Tags */
-		XMLHandler xmlHandler = new XMLHandler(this);
+		XMLHandler xmlHandler = new XMLHandler(this, model);
 		xr.setContentHandler(xmlHandler);
 		xr.parse(new InputSource(inputstream));
-
-		printableObjectList = xmlHandler.getPrintableObjectList();
-	}
-
-	public Vector<PrintableObject> getPrintableObjects()
-	{
-		return printableObjectList;
-	}
-
-	public Units getUnits()
-	{
-		return this.units;
-	}
-
-
-	public void setUnits(Units units)
-	{
-		this.units = units;
-		
 	}
 }

@@ -1,34 +1,28 @@
 package threedc.github.com.amf;
 
-import java.util.Vector;
-
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
-import threedc.github.com.model.Units;
 
 public class XMLHandler extends DefaultHandler implements Subscriber
 {
 	static Logger logger = Logger.getLogger(XMLHandler.class);
-	Boolean currentElement = false;
-	StringBuilder currentValue = new StringBuilder();
+	private Boolean currentElement = false;
+	private StringBuilder currentValue = new StringBuilder();
 
-	ParserState parserState = null;
+	final ParserState parserState;
 
-	public Vector<PrintableObject> printableObjects = new Vector<PrintableObject>();
-	private XMLParser xmlParser;
+	final private XMLParser xmlParser;
 
-	public XMLHandler(XMLParser xmlParser)
+	public XMLHandler(XMLParser xmlParser, ModelImpl model)
 	{
 		this.xmlParser = xmlParser;
-	}
-
-	public Vector<PrintableObject> getPrintableObjectList()
-	{
-		return printableObjects;
+		this.parserState = new ParserState(model);
+		
 	}
 
 	/**
@@ -42,7 +36,7 @@ public class XMLHandler extends DefaultHandler implements Subscriber
 		currentElement = true;
 		currentValue.setLength(0);
 		Element element = Element.valueOf(qName);
-		parserState = element.getHandler().startElement(parserState, attributes);
+		element.getHandler().startElement(parserState, attributes);
 
 		if (element == Element.object)
 			parserState.subscribe(this);
@@ -61,10 +55,6 @@ public class XMLHandler extends DefaultHandler implements Subscriber
 		Element element = Element.valueOf(qName);
 
 		element.getHandler().endElement(parserState, currentValue.toString().trim());
-		
-		if (element == Element.amf)
-			xmlParser.setUnits(parserState.getUnits());
-
 	}
 
 	/**
@@ -144,7 +134,6 @@ public class XMLHandler extends DefaultHandler implements Subscriber
 
 	public void notifyObjectComplete(PrintableObject object)
 	{
-		printableObjects.add(parserState.getPrintableObject());
 	}
 
 	public XMLParser getParser()

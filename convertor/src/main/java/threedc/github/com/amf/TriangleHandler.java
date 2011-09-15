@@ -11,10 +11,9 @@ public class TriangleHandler extends Handler
 	}
 
 	@Override
-	public ParserState startElement(ParserState parserState, Attributes attributes)
+	public void startElement(ParserState parserState, Attributes attributes)
 	{
 		parserState.startTriangle();
-		return parserState;
 	}
 
 

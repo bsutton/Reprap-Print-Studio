@@ -12,7 +12,7 @@ import org.apache.log4j.SimpleLayout;
 import org.junit.Before;
 import org.junit.Test;
 
-import threedc.github.com.model.Model;
+import threedc.github.com.model.ModelImpl;
 
 
 public class AmfEncodeTest
@@ -59,7 +59,7 @@ public class AmfEncodeTest
 			FileType encoderFileType = FileType.STL;
 			encoder = encoderFileType.getEncoder();
 
-			Model model = decoder.decode();
+			ModelImpl model = decoder.decode();
 			logger.info("Loaded model from: " + from);
 			model.dump(logger, false);
 			

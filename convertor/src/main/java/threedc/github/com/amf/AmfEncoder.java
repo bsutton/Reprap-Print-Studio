@@ -15,19 +15,28 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
 import threedc.github.com.Encoder;
-import threedc.github.com.model.Model;
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 import threedc.github.com.model.Vertex;
 
 public class AmfEncoder implements Encoder
 {
+	String version = "1.0";
 	
-	public boolean encode(Model model, String output_path) throws IOException
+	public void encode(ModelImpl model, String output_path) throws IOException
 	{
-		FileOutputStream xmlFile = new FileOutputStream(new File(output_path));
+		encode(model, new File(output_path));
+	}
+	
+	
+	public void encode(ModelImpl model, File output, boolean split) throws IOException
+	{
+		FileOutputStream xmlFile = new FileOutputStream(output);
 		StreamResult streamResult = new StreamResult(xmlFile);
 		SAXTransformerFactory tf = (SAXTransformerFactory) SAXTransformerFactory.newInstance();
+		
+		model.setVersion(version);
 
 		try
 		{
@@ -100,7 +109,6 @@ public class AmfEncoder implements Encoder
 			throw new RuntimeException(e);
 		}
 
-		return false;
 	}
 
 	private void element(TransformerHandler hd, String name, int value) throws SAXException
@@ -129,9 +137,11 @@ public class AmfEncoder implements Encoder
 		return null;
 	}
 
-	public boolean encode(Model model, File outputPath) throws IOException
+	public void encode(ModelImpl model, File outputPath) throws IOException
 	{
-		return encode(model, outputPath.getAbsolutePath());
+		encode(model, outputPath.getAbsolutePath());
 	}
+
+
 
 }

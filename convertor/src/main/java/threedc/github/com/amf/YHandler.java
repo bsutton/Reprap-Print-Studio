@@ -1,7 +1,6 @@
 package threedc.github.com.amf;
 
 import org.apache.log4j.Logger;
-import org.xml.sax.Attributes;
 
 public class YHandler extends Handler
 {
@@ -14,12 +13,6 @@ public class YHandler extends Handler
 	{
 		//logger.debug("Vertex y:" + currentValue);
 		currentParser.endY(Float.valueOf(currentValue));
-	}
-
-	@Override
-	public ParserState startElement(ParserState currentParser, Attributes attributes)
-	{
-		return currentParser;
 	}
 
 }

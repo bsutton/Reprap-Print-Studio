@@ -17,8 +17,7 @@ import org.xml.sax.SAXException;
 
 import threedc.github.com.DecodeException;
 import threedc.github.com.Decoder;
-import threedc.github.com.model.Model;
-import threedc.github.com.model.PrintableObject;
+import threedc.github.com.model.ModelImpl;
 
 public class AmfDecoder implements Decoder
 {
@@ -62,20 +61,17 @@ public class AmfDecoder implements Decoder
 		}
 	}
 
-	public Model decode() throws EOFException, IOException, DecodeException
+	public ModelImpl decode() throws EOFException, IOException, DecodeException
 	{
-		Model model = new Model();
+		ModelImpl model = new ModelImpl();
 
 		XMLParser parser;
 		try
 		{
 			for (InputStream stream : fileList)
 			{
-				parser = new XMLParser();
+				parser = new XMLParser(model);
 				parser.parse(stream);
-				model.setUnits(parser.getUnits());
-				for (PrintableObject object : parser.getPrintableObjects())
-					model.addPrintableObject(object);
 			}
 		}
 		catch (ParserConfigurationException e)

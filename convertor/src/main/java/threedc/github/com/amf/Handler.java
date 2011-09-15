@@ -9,9 +9,8 @@ public class Handler
 	{
 	}
 
-	public ParserState startElement(ParserState currentParser, Attributes attributes)
+	public void startElement(ParserState currentParser, Attributes attributes)
 	{
-		return currentParser;
 	}
 
 }

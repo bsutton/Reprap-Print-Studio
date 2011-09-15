@@ -11,9 +11,8 @@ public class V1Handler extends Handler
 	}
 
 	@Override
-	public ParserState startElement(ParserState currentParser, Attributes attributes)
+	public void startElement(ParserState currentParser, Attributes attributes)
 	{
-		return currentParser;
 	}
 
 }

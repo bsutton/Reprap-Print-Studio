@@ -18,10 +18,9 @@ public class ObjectHandler extends Handler
 
 
 	@Override
-	public ParserState startElement(ParserState currentState, Attributes attributes)
+	public void startElement(ParserState parserState, Attributes attributes)
 	{
-		currentState.setPrintableObject(new PrintableObject(attributes.getValue(OBJECT_ID), PrintableObject.VertexMode.Ordered));
-		return currentState;
+		parserState.addPrintableObject(new PrintableObject(attributes.getValue(OBJECT_ID), PrintableObject.VertexMode.Ordered));
 	}
 
 }

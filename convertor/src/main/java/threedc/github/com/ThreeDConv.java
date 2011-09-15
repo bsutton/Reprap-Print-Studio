@@ -1,8 +1,12 @@
 package threedc.github.com;
 
+/** 
+ * provides the ability to merge multiple input files into a single amf file.
+ */
+
 import java.io.IOException;
 
-import threedc.github.com.model.Model;
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 
 public class ThreeDConv
@@ -29,7 +33,7 @@ public class ThreeDConv
 					return;
 				}
 
-				Model model = decoder.decode();
+				ModelImpl model = decoder.decode();
 				System.out.println("Loaded: " + model.getTriangleCount() + " triangles" 
 						+ " from " + decoder.getFilePath());
 
@@ -63,7 +67,7 @@ public class ThreeDConv
 		System.out.println("Usage: java threedc.github.com.ThreeDConv input_type input_file output_type output_file");
 	}
 	
-	static void dump(Model model)
+	static void dump(ModelImpl model)
 	{
 		for (PrintableObject object : model.getPrintableObjects())
 			object.dump();
