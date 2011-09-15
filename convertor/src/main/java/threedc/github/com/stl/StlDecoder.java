@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import threedc.github.com.Decoder;
-import threedc.github.com.model.Model;
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 import threedc.github.com.model.Vertex;
@@ -31,7 +31,7 @@ public class StlDecoder implements Decoder
 		br = new BufferedReader(new FileReader(path));
 	}
 
-	public Model decode() throws IOException
+	public ModelImpl decode() throws IOException
 	{
 		String header = "solid";
 		String facet = "facet";
@@ -129,7 +129,7 @@ public class StlDecoder implements Decoder
 		if (tokens.isEmpty())
 			throw new InvalidFormatException("Error: STL missing 'endsolid' at line " + lineCount);
 
-		Model model = new Model();
+		ModelImpl model = new ModelImpl();
 		model.addPrintableObject(printableObject);
 
 		return model;

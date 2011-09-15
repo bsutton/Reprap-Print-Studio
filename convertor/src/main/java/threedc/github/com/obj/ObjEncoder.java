@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 import threedc.github.com.Encoder;
-import threedc.github.com.model.Model;
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 import threedc.github.com.model.Vertex;
@@ -16,7 +16,15 @@ public class ObjEncoder implements Encoder
 {
 	File filePath;
 
-	public boolean encode(Model model, String output_path) throws IOException
+	
+	public void encode(ModelImpl model, String output_path) throws IOException
+	{
+		encode(model, new File(output_path));
+		
+	}
+
+	public void encode(ModelImpl model, File output, boolean split) throws IOException
+
 	{
 		for (PrintableObject object : model.getPrintableObjects())
 		{
@@ -24,15 +32,14 @@ public class ObjEncoder implements Encoder
 			// with the objects 'id' inserted into the file name.
 			if (model.getPrintableObjects().size() > 1)
 			{
-				File output = new File(output_path);
 				filePath = new File(output.getParent(), FileUtility.getNamePart(output) + "." + object.getId() + "."
 						+ FileUtility.getExtension(output));
 			}
 			else
-				filePath = new File(output_path);
+				filePath = output;
 
 			int triangle_count = model.getTriangleCount();
-			Writer out = new FileWriter(output_path);
+			Writer out = new FileWriter(output);
 
 			out.write("# Exported to OBJ by 3dc\r\n");
 			out.write("# github.com/bsutton/3dc\r\n");
@@ -44,7 +51,7 @@ public class ObjEncoder implements Encoder
 
 			for (int i = 0; i < triangle_count; ++i)
 			{
-				WriteNormal(out, (object.getTriangle(i)).getNorm());
+				WriteNormal(out, (object.getTriangle(i)).getNormal());
 			}
 
 			for (int i = 0; i < triangle_count; ++i)
@@ -54,8 +61,6 @@ public class ObjEncoder implements Encoder
 
 			out.close();
 		}
-
-		return true;
 	}
 
 	// Writes all the verticies for a triangle
@@ -99,9 +104,10 @@ public class ObjEncoder implements Encoder
 		return filePath.getCanonicalPath();
 	}
 	
-	public boolean encode(Model model, File outputPath) throws IOException
+	public void encode(ModelImpl model, File outputPath) throws IOException
 	{
-		return encode(model, outputPath.getAbsolutePath());
+		encode(model, outputPath.getAbsolutePath());
 	}
+
 
 }

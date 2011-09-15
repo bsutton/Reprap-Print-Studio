@@ -9,7 +9,7 @@ import java.nio.ByteOrder;
 import java.nio.charset.Charset;
 
 import threedc.github.com.Encoder;
-import threedc.github.com.model.Model;
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 import threedc.github.com.model.Vertex;
@@ -19,7 +19,13 @@ public class StlbEncoder implements Encoder
 {
 	File filePath;
 
-	public boolean encode(Model model, String output_path) throws IOException
+	public void encode(ModelImpl model, String output_path) throws IOException
+	{
+		encode(model, new File(output_path));
+		
+	}
+
+	public void encode(ModelImpl model, File output, boolean split) throws IOException
 	{
 		for (PrintableObject object : model.getPrintableObjects())
 		{
@@ -28,12 +34,11 @@ public class StlbEncoder implements Encoder
 			// with the objects 'id' inserted into the file name.
 			if (model.getPrintableObjects().size() > 1)
 			{
-				File output = new File(output_path);
 				filePath = new File(output.getParent(), FileUtility.getNamePart(output) + "." + object.getId() + "."
 						+ FileUtility.getExtension(output));
 			}
 			else
-				filePath = new File(output_path);
+				filePath = output;
 
 
 			FileOutputStream out = new FileOutputStream(filePath);
@@ -58,13 +63,12 @@ public class StlbEncoder implements Encoder
 				out.close();
 			}
 		}
-		return true;
 	}
 
 	// Writes the contents of a Triangle to the output stream
 	void WriteStlbTriangle(OutputStream out, Triangle t) throws IOException
 	{
-		WriteStlbVertex(out, t.getNorm());
+		WriteStlbVertex(out, t.getNormal());
 		WriteStlbVertex(out, t.getV1());
 		WriteStlbVertex(out, t.getV2());
 		WriteStlbVertex(out, t.getV3());
@@ -105,9 +109,9 @@ public class StlbEncoder implements Encoder
 		return filePath.getCanonicalPath();
 	}
 	
-	public boolean encode(Model model, File outputPath) throws IOException
+	public void encode(ModelImpl model, File outputPath) throws IOException
 	{
-		return encode(model, outputPath.getAbsolutePath());
+		encode(model, outputPath.getAbsolutePath());
 	}
 
 }

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import threedc.github.com.Decoder;
-import threedc.github.com.model.Model;
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 
@@ -27,7 +27,7 @@ public class ObjDecoder implements Decoder
 		br = new BufferedReader(new FileReader(path));
 	}
 
-	public Model decode() throws EOFException, IOException
+	public ModelImpl decode() throws EOFException, IOException
 	{
 		int triangles = 0;
 
@@ -77,7 +77,7 @@ public class ObjDecoder implements Decoder
 			}
 		}
 		
-		Model model = new Model();
+		ModelImpl model = new ModelImpl();
 		model.addPrintableObject(printableObject);
 
 		return model;

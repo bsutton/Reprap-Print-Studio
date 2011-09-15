@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import threedc.github.com.Decoder;
 import threedc.github.com.FileBlobBinary;
-import threedc.github.com.model.Model;
+import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 import threedc.github.com.model.Vertex;
@@ -27,7 +27,7 @@ public class StlbDecoder implements Decoder
 		b = new FileBlobBinary(path);
 	}
 
-	public Model decode() throws IOException, EOFException
+	public ModelImpl decode() throws IOException, EOFException
 	{
 		long fsize = b.size();
 
@@ -55,7 +55,7 @@ public class StlbDecoder implements Decoder
 					+ " got " + object.getTriangleCount());
 		}
 
-		Model model = new Model();
+		ModelImpl model = new ModelImpl();
 		model.addPrintableObject(object);
 		return model;
 	}
