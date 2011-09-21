@@ -15,7 +15,7 @@ import threedc.github.com.util.VertexComparator;
 public class PrintableObject implements Cloneable
 {
 	static Logger logger = Logger.getLogger(PrintableObject.class);
-	
+
 	String id; // Model wide unique identifier for this PrintableObject
 
 	public enum VertexMode
@@ -35,13 +35,23 @@ public class PrintableObject implements Cloneable
 	// so allowing triangles to share these vertexes will reduce the memory
 	// footprint.
 	Vector<Vertex> vertexes = new Vector<Vertex>();
-	Vector<Triangle> triangles = new Vector<Triangle>();
 	Vector<Vertex> normals = new Vector<Vertex>();
 
-	public PrintableObject(String id, VertexMode mode)
+	private Vector<Volume> volumes = new Vector<Volume>();
+
+	/**
+	 * The units the object is specified in. This is inherited from the model
+	 * that owns the object.
+	 */
+	private Units units;
+
+	public PrintableObject(String id, VertexMode mode, Units units)
 	{
+		// Currently we just support a single volume per object.
+		volumes.add(new Volume());
 		this.id = id;
 		this.vertexMode = mode;
+		this.units = units;
 
 		if (this.vertexMode == VertexMode.Sorted)
 		{
@@ -53,17 +63,19 @@ public class PrintableObject implements Cloneable
 
 	public int getTriangleCount()
 	{
-		return triangles.size();
+
+		return volumes.get(0).getTriangles().size();
 	}
 
 	public Triangle getTriangle(int index)
 	{
-		return triangles.elementAt(index);
+		return volumes.get(0).getTriangle(index);
+
 	}
 
 	public void addTriangle(Triangle t)
 	{
-		triangles.add(t);
+		volumes.get(0).addTriangle(t);
 	}
 
 	public String getId()
@@ -75,7 +87,7 @@ public class PrintableObject implements Cloneable
 	{
 		return vertexes.elementAt(index);
 	}
-	
+
 	public Vector<Vertex> getVertexes()
 	{
 		return this.vertexes;
@@ -86,34 +98,42 @@ public class PrintableObject implements Cloneable
 		Vertex vertex = new Vertex(x, y, z);
 		return addVertex(vertex);
 	}
-		
+
 	public Vertex addVertex(Vertex vertex)
 	{
-		
+		int ordinal = -1;
+
 		if (this.vertexMode == VertexMode.Sorted)
 		{
-			Vertex existing = ((SortedVector<Vertex>)vertexes).find(vertex);
-			if (existing != null)
-				vertex = existing;
+			int index = ((SortedVector<Vertex>) vertexes).binarySearch(vertex);
+			if (index > -1)
+			{
+				vertex = vertexes.elementAt(index);
+				ordinal = index;
+			}
 			else
-				vertexes.add(vertex);
+			{
+				vertexes.add(-index - 1, vertex);
+				ordinal = -index - 1;
+			}
 		}
 		else
+		{
+			ordinal = vertexes.size();
 			vertexes.add(vertex);
-		
-		int ordinal = vertexes.indexOf(vertex);
+		}
+
 		vertex.setOrdinal(ordinal);
 
 		return vertex;
 	}
-	
+
 	public Vertex addVertex(float x, float y, float z, float normal)
 	{
-		Vertex vertex = new Vertex(x,y,z,normal);
+		Vertex vertex = new Vertex(x, y, z, normal);
 		return addVertex(vertex);
-		
-	}
 
+	}
 
 	public void addNormal(Vertex vertex)
 	{
@@ -133,7 +153,8 @@ public class PrintableObject implements Cloneable
 		int count = 0;
 		for (Vertex vertex : vertexes)
 		{
-			logger.debug("Vertex ordinal: " + count++ + " x: " + vertex.getX() + " y: " + vertex.getY() + " z: " + vertex.getZ());
+			logger.debug("Vertex ordinal: " + count++ + " x: " + vertex.getX() + " y: " + vertex.getY() + " z: "
+					+ vertex.getZ());
 		}
 	}
 
@@ -141,74 +162,198 @@ public class PrintableObject implements Cloneable
 	{
 		return vertexes.size();
 	}
-	
+
 	/**
-	 * performs a deep clone of the PrintableObject.
-	 * The ID is also cloned and needs to be changed when added to a model to ensure that
-	 * it is unique within the target model.
+	 * performs a deep clone of the PrintableObject. The ID is also cloned and
+	 * needs to be changed when added to a model to ensure that it is unique
+	 * within the target model.
 	 */
 	public PrintableObject clone()
 	{
-		
-		PrintableObject clone = new PrintableObject(this.id, this.vertexMode);
+
+		PrintableObject clone = new PrintableObject(this.id, this.vertexMode, this.units);
 		for (Vertex vertex : vertexes)
 		{
 			clone.addVertex(vertex.clone());
 		}
-		
-		for (Triangle triangle : triangles)
+
+		// The object starts with a default empty volume so we need to remove it
+		// before
+		// we clone the first volume
+		clone.volumes.removeAllElements();
+		for (Volume volume : volumes)
 		{
-			// We need to find the corresponding vertex in the clone.
-			Vertex v1 = clone.getVertex(triangle.getV1());
-			Vertex v2 = clone.getVertex(triangle.getV2());
-			Vertex v3 = clone.getVertex(triangle.getV3());
-			Vertex normal = clone.getNormal(triangle.getNormal());
-			clone.addTriangle(new Triangle(v1, v2, v3, normal));
+			clone.addVolume(volume.clone(clone));
 		}
-		
+
 		for (Vertex normal : normals)
 		{
 			clone.addVertex(normal.clone());
 		}
-		
+
 		return clone;
 	}
 
+	private void addVolume(Volume volume)
+	{
+		this.volumes.add(volume);
 
-	/** Finds the matching vertex in the list of vertexes for this object.
+	}
+
+	/**
+	 * Finds the matching vertex in the list of vertexes for this object.
 	 * 
 	 * @param vertex
 	 * @return the matching vertex
 	 */
-	private Vertex getVertex(Vertex vertex)
+	Vertex getVertex(Vertex vertex)
 	{
-		return ((SortedVector<Vertex>)vertexes).find(vertex);
+		return ((SortedVector<Vertex>) vertexes).find(vertex);
 	}
 
-	/** Finds the matching vertex in the list of vertexes for this object.
+	/**
+	 * Finds the matching vertex in the list of vertexes for this object.
 	 * 
 	 * @param vertex
 	 * @return the matching vertex
 	 */
-	private Vertex getNormal(Vertex normal)
+	Vertex getNormal(Vertex normal)
 	{
-		return ((SortedVector<Vertex>)normals).find(normal);
+		return ((SortedVector<Vertex>) normals).find(normal);
 	}
-
 
 	public void setID(String newID)
 	{
 		this.id = newID;
 	}
 
-	public void transform(Transform transform)
+	public Vector<Volume> getVolumes()
 	{
-		for (Vertex vertex : vertexes)
+		return volumes;
+	}
+
+	public void forceMaterial(Material material)
+	{
+		for (Volume volume : this.volumes)
 		{
-			transform.apply(vertex);
+			volume.setMaterial(material);
 		}
 
 	}
 
+	public Units getUnits()
+	{
+		return this.units;
+	}
+
+	public void applyTransforms(Transform[] transforms)
+	{
+		
+		// Allow each transform to do any last minute preparation that
+		// may require knowledge of the object being transformed.
+		for (Transform transform : transforms)
+		{
+			transform.prep(this);
+		}
+
+		int processors = Runtime.getRuntime().availableProcessors();
+
+		int count = vertexes.size();
+
+		int allocation = count / processors;
+
+		int first = 0; // inclusive
+		int last = allocation; // exclusive
+		
+		Vector<Transformer> transformers = new Vector<Transformer>();
+		do
+		{
+			Transformer t = new Transformer(vertexes, first, last, transforms);
+			t.start();
+			transformers.add(t);
+			first = last;
+			last = Math.min(last + allocation, count);
+
+		} while (first < count);
+
+		// wait for all of the threads to finish.
+		for (Transformer transformer : transformers)
+		{
+			try
+			{
+				transformer.join();
+			}
+			catch (InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	// Used so that we can apply transform using multiple threads.
+	class Transformer extends Thread
+	{
+		final Vector<Vertex> vertexes;
+		final int first;
+		final int last;
+		final Transform[] transforms;
+
+		Transformer(Vector<Vertex> vertexes, int first, int last, Transform[] transforms)
+		{
+			this.vertexes = vertexes;
+			this.first = first;
+			this.last = last;
+			this.transforms = transforms;
+			this.setPriority(MIN_PRIORITY);
+			this.setName("Transformer");
+		}
+
+		public void run()
+		{
+			// Apply the set of transforms to each vertex.
+			for (Vertex vertex : vertexes.subList(first, last))
+			{
+				for (Transform transform : transforms)
+				{
+					transform.apply(vertex);
+				}
+			}
+		}
+	}
+
+	public Bounds computeBoundingBox()
+	{
+		Bounds bounds = new Bounds();
+
+		if (volumes.size() == 0)
+		{
+			bounds.setMin(new Vertex(0, 0, 0));
+			bounds.setMax(new Vertex(0, 0, 0));
+		}
+		else
+		{
+			// Initialise max and min to a random vertex (it doesn't matter at
+			// this stage)
+			Bounds volume0 = volumes.elementAt(0).computeBoundingBox();
+			bounds.setMin(volume0);
+			bounds.setMax(volume0);
+
+			for (Volume volume : volumes)
+			{
+				// we have already added in the bounds of the first volume so as 
+				// an optimisation we avoid doing it again.
+				if (volume0 != null)
+				{
+					volume0 = null;
+					continue;
+				}
+				bounds.updateMin(volume.computeBoundingBox());
+				bounds.updateMin(volume.computeBoundingBox());
+			}
+		}
+
+		return bounds;
+	}
 
 }
