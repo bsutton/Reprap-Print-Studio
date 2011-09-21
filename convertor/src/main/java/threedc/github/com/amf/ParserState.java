@@ -110,6 +110,11 @@ public class ParserState
 		model.setUnits(Units.valueOf(units));
 	}
 
+	public Units getUnits()
+	{
+		return model.getUnits();
+	}
+
 	public void setVersion(String version)
 	{
 		model.setVersion(version);
