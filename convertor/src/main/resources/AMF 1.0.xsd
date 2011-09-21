@@ -97,7 +97,7 @@
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>
-										<xs:element name="region" maxOccurs="unbounded">
+										<xs:element name="volume" maxOccurs="unbounded">
 											<xs:complexType>
 												<xs:sequence>
 													<xs:element name="triangle" minOccurs="0" maxOccurs="unbounded">
@@ -121,7 +121,7 @@
 															<xs:attribute name="dz3" type="xs:decimal" use="required" />
 														</xs:complexType>
 													</xs:element>
-													<xs:element name="color" type="colorType" minOccurs="0" maxOccurs="unbounded" />
+
 													<xs:element name="metadata" type="metadataType" minOccurs="0" maxOccurs="unbounded" />
 												</xs:sequence>
 												<xs:attribute name="materialid" type="xs:string" />
@@ -182,6 +182,15 @@
 									<xs:attribute name="rz" type="xs:decimal" use="required" />
 								</xs:complexType>
 							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="material" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="color" type="colorType" minOccurs="0" maxOccurs="unbounded" />
+							<xs:element name="metadata" type="metadataType" minOccurs="0" maxOccurs="unbounded" />
 						</xs:sequence>
 						<xs:attribute name="id" type="xs:string" use="required" />
 					</xs:complexType>
