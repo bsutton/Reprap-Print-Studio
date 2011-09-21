@@ -9,6 +9,7 @@ import threedc.github.com.FileBlobBinary;
 import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
+import threedc.github.com.model.Units;
 import threedc.github.com.model.Vertex;
 
 import com.sun.media.sound.InvalidFormatException;
@@ -19,12 +20,14 @@ public class StlbDecoder implements Decoder
 	String description;
 
 	File filePath;
+	private Units unit;
 
 	
-	public StlbDecoder(String path) throws IOException
+	public StlbDecoder(String path, Units unit) throws IOException
 	{
 		filePath = new File(path);
 		b = new FileBlobBinary(path);
+		this.unit = unit;
 	}
 
 	public ModelImpl decode() throws IOException, EOFException
@@ -33,7 +36,7 @@ public class StlbDecoder implements Decoder
 
 		// Get the description stored in the first 80 chars.
 		description = b.getString(0, 80).trim();
-		PrintableObject object = new PrintableObject(description.length() == 0 ? b.getFilePath() : description, PrintableObject.VertexMode.Ordered);
+		PrintableObject object = new PrintableObject(description.length() == 0 ? b.getFilePath() : description, PrintableObject.VertexMode.Ordered, this.unit);
 		
 		// Get the facet count at offset 80.
 		long i = 0, triangle_count = b.getInteger(80);

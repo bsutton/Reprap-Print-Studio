@@ -10,6 +10,7 @@ import threedc.github.com.Decoder;
 import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
+import threedc.github.com.model.Units;
 
 public class ObjDecoder implements Decoder
 {
@@ -18,20 +19,21 @@ public class ObjDecoder implements Decoder
 	private static final int Z_TOKEN_IDX = 7;
 	private static final int Y_TOKEN_IDX = 4;
 	private static final int X_TOKEN_IDX = 1;
-	BufferedReader br;
-	int size = 0;
-	int lineCount = 0; // The current line being processed
+	private final BufferedReader br;
+	private int lineCount = 0; // The current line being processed
+	private final Units unit;
 
-	public ObjDecoder(String path) throws IOException
+	public ObjDecoder(String path, Units unit) throws IOException
 	{
 		br = new BufferedReader(new FileReader(path));
+		this.unit = unit;
 	}
 
 	public ModelImpl decode() throws EOFException, IOException
 	{
 		int triangles = 0;
 
-		PrintableObject printableObject = new PrintableObject("0", PrintableObject.VertexMode.Ordered);
+		PrintableObject printableObject = new PrintableObject("0", PrintableObject.VertexMode.Ordered, this.unit);
 
 		Vector<String> tokens = new Vector<String>();
 		while ((tokens = nextLine()) != null)

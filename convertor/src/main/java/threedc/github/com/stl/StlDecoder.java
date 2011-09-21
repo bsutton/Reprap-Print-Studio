@@ -10,6 +10,7 @@ import threedc.github.com.Decoder;
 import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
+import threedc.github.com.model.Units;
 import threedc.github.com.model.Vertex;
 
 import com.sun.media.sound.InvalidFormatException;
@@ -19,14 +20,16 @@ public class StlDecoder implements Decoder
 
 	private static final int DESCRIPTION = 1;
 
-	BufferedReader br;
-	int lineCount = 0; // The current line being processed
+	private BufferedReader br;
+	private int lineCount = 0; // The current line being processed
 
-	File filePath;
+	private final File filePath;
+	private Units unit;
 
-	public StlDecoder(String path) throws IOException
+	public StlDecoder(String path, Units unit) throws IOException
 	{
-		filePath = new File(path);
+		this.filePath = new File(path);
+		this.unit = unit;
 
 		br = new BufferedReader(new FileReader(path));
 	}
@@ -52,7 +55,7 @@ public class StlDecoder implements Decoder
 		}
 
 		PrintableObject printableObject = new PrintableObject(
-				(tokens.size() > DESCRIPTION ? tokens.elementAt(DESCRIPTION) : ""), PrintableObject.VertexMode.Sorted);
+				(tokens.size() > DESCRIPTION ? tokens.elementAt(DESCRIPTION) : ""), PrintableObject.VertexMode.Sorted, this.unit);
 
 		Vector<Vertex> cache = new Vector<Vertex>();
 		tokens = nextLine();
