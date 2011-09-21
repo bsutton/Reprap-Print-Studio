@@ -15,27 +15,33 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
 import threedc.github.com.Encoder;
+import threedc.github.com.model.Material;
 import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 import threedc.github.com.model.Vertex;
+import threedc.github.com.model.Volume;
 
 public class AmfEncoder implements Encoder
 {
 	String version = "1.0";
-	
+
 	public void encode(ModelImpl model, String output_path) throws IOException
 	{
 		encode(model, new File(output_path));
 	}
-	
-	
+
+	public void encode(ModelImpl model, File outputPath) throws IOException
+	{
+		encode(model, outputPath, false);
+	}
+
 	public void encode(ModelImpl model, File output, boolean split) throws IOException
 	{
 		FileOutputStream xmlFile = new FileOutputStream(output);
 		StreamResult streamResult = new StreamResult(xmlFile);
 		SAXTransformerFactory tf = (SAXTransformerFactory) SAXTransformerFactory.newInstance();
-		
+
 		model.setVersion(version);
 
 		try
@@ -44,8 +50,10 @@ public class AmfEncoder implements Encoder
 			TransformerHandler hd = tf.newTransformerHandler();
 			Transformer serializer = hd.getTransformer();
 			serializer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-			//serializer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "AMF 1.0.xsd");
+			// serializer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM,
+			// "AMF 1.0.xsd");
 			serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+			serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 			hd.setResult(streamResult);
 			hd.startDocument();
 			AttributesImpl atts = new AttributesImpl();
@@ -77,24 +85,46 @@ public class AmfEncoder implements Encoder
 						hd.endElement("", "", "vertex");
 					}
 					hd.endElement("", "", "vertices");
-					atts.clear();
-					hd.startElement("", "", "region", atts);
 
-					// Output the list of triangles
-					for (int i = 0; i < object.getTriangleCount(); i++)
+					for (Volume volume : object.getVolumes())
 					{
-						Triangle triangle = object.getTriangle(i);
 						atts.clear();
-						hd.startElement("", "", "triangle", atts);
-						element(hd, "v1", triangle.getV1().getOrdinal());
-						element(hd, "v2", triangle.getV2().getOrdinal());
-						element(hd, "v3", triangle.getV3().getOrdinal());
-						hd.endElement("", "", "triangle");
-					}
+						atts.addAttribute("", "", "materialid", "CDATA", volume.getMaterialId());
+						hd.startElement("", "", "volume", atts);
 
-					hd.endElement("", "", "region");
+						// Output the list of triangles
+						for (int i = 0; i < volume.getTriangles().size(); i++)
+						{
+							Triangle triangle = volume.getTriangle(i);
+							atts.clear();
+							hd.startElement("", "", "triangle", atts);
+							element(hd, "v1", triangle.getV1().getOrdinal());
+							element(hd, "v2", triangle.getV2().getOrdinal());
+							element(hd, "v3", triangle.getV3().getOrdinal());
+							hd.endElement("", "", "triangle");
+						}
+
+						hd.endElement("", "", "volume");
+					}
 					hd.endElement("", "", "mesh");
 					hd.endElement("", "", "object");
+				}
+
+				for (Material material : model.getMaterials())
+				{
+					atts.clear();
+					atts.addAttribute("", "", "id", "CDATA", material.getId());
+					hd.startElement("", "", "material", atts);
+
+					atts.clear();
+					atts.addAttribute("", "", "type", "CDATA", "Name");
+					hd.startElement("", "", "metadata", atts);
+					hd.startCDATA();
+					hd.characters(material.getName().toCharArray(), 0, material.getName().length());
+					hd.endCDATA();
+					hd.endElement("", "", "metadata");
+
+					hd.endElement("", "", "material");
 				}
 			}
 			hd.endElement("", "", "amf");
@@ -136,12 +166,6 @@ public class AmfEncoder implements Encoder
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public void encode(ModelImpl model, File outputPath) throws IOException
-	{
-		encode(model, outputPath.getAbsolutePath());
-	}
-
 
 
 }
