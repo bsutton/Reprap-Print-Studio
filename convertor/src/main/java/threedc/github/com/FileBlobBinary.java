@@ -7,6 +7,8 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
+import threedc.github.com.util.ByteBufferUtilities;
+
 //A wrapper for the binary contents of a file. Makes the bytes of a file available like an array.
 public class FileBlobBinary
 {
