@@ -27,15 +27,10 @@ public class Vertex
 		this.setNormal(normal);
 	}
 
-	private void setNormal(float normal)
+	public void setNormal(float normal)
 	{
 		this.normal = normal;
 		
-	}
-
-	public Vertex()
-	{
-		// TODO Auto-generated constructor stub
 	}
 
 	public void setX(float x)
