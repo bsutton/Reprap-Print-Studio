@@ -57,4 +57,18 @@ public class SortedVector<T> extends Vector<T>
 
 		return t;
 	}
+	
+
+	/*
+	 * The index of the search key, if it is contained in the list; otherwise, (-(insertion point) - 1). 
+	 * The insertion point is defined as the point at which the key would be inserted into the list: 
+	 * the index of the first element greater than the key, or list.size() if all elements in the list 
+	 * are less than the specified key. Note that this guarantees that the return value will be >= 0 if 
+	 * and only if the key is found.
+	 */
+	public int binarySearch(T key)
+	{
+		return Collections.binarySearch(this, key, this.comparator);
+	}
+	
 }
