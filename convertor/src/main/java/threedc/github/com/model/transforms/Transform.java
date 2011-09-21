@@ -11,6 +11,17 @@ import threedc.github.com.model.Vertex;
  */
 public interface Transform
 {
-	public void apply(PrintableObject object);
+	/**
+	 * Apply the transformation to the given vertex.
+	 */
 	public void apply(Vertex vertex);
+
+	/** 
+	 * Called just before the transform is applied to allow it to do any last minute
+	 * initialisation that requires up to date knowledge of the object it is applying
+	 * the transform to.
+	 * 
+	 * @param printableObject
+	 */
+	public void prep(PrintableObject printableObject);
 }
