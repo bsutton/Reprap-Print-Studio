@@ -101,7 +101,8 @@ public class Triangle
 		return new Vertex(-p1.getX() + p2.getX(), -p1.getY() + p2.getY(), -p1.getZ() + p2.getZ());
 	}
 
-	// calculate the cross product returns a vector
+	// calculate the cross product 
+	// returns a vector which is the cross product of the two passed vectors.
 	public Vertex crossProduct(Vertex p1, Vertex p2)
 	{
 		return new Vertex(p1.getY() * p2.getZ() - p2.getY() * p1.getZ()
