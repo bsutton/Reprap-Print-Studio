@@ -18,6 +18,7 @@ public class ModelImpl implements Model
 	Vector<PrintableObject> printableObjects = new Vector<PrintableObject>();
 	private Units units = Units.millimeter;
 	private String version;
+	private Vector<Material> materials = new Vector<Material>();
 
 	public void addPrintableObject(PrintableObject object)
 	{
@@ -77,7 +78,7 @@ public class ModelImpl implements Model
 
 	public String getVersion()
 	{
-		return this.version ;
+		return this.version;
 	}
 
 	public void dump(Logger logger, boolean dumpVectors)
@@ -99,44 +100,44 @@ public class ModelImpl implements Model
 
 	public void setVersion(String version)
 	{
-		this.version = version; 
-		
+		this.version = version;
+
 	}
-	/* Merges two models into a single model
-	 * applying the passed transformations into the second model
-	 * before merging them.
+
+	/*
+	 * Merges two models into a single model applying the passed transformations
+	 * into the second model before merging them.
 	 * 
-	 * Essentially the objects of the second model will be extracted
-	 * and added to that of the first model.
+	 * Essentially the objects of the second model will be extracted and added
+	 * to that of the first model.
 	 * 
-	 * Limitations:
-	 * current we don't do any unit conversions so both models must
+	 * Limitations: current we don't do any unit conversions so both models must
 	 * use the same units.
 	 */
 
 	public void merge(ModelImpl rhs, Transform[] transforms)
 	{
-		// Maps a set of old PrintableObject id's to the new ID's they will have in the 
+		// Maps a set of old PrintableObject id's to the new ID's they will have
+		// in the
 		// merged model.
 		Map<String, String> objectIDMap = new Hashtable<String, String>();
-		
+
 		if (this.units != rhs.units)
 			throw new IllegalStateException("The units of both models must match.");
-		
+
 		for (PrintableObject object : rhs.getPrintableObjects())
 		{
-			PrintableObject transformedObject= (PrintableObject) object.clone();
-			
-			// We must be certain that the merged object has an id which is unique
+			PrintableObject transformedObject = (PrintableObject) object.clone();
+
+			// We must be certain that the merged object has an id which is
+			// unique
 			// within our model.
 			String newID = getUniqueObjectID();
 			objectIDMap.put(object.getId(), newID);
 			transformedObject.setID(newID);
-			
-			for (Transform transform : transforms)
-			{
-				transform.apply(transformedObject);
-			}
+
+			if (transforms != null)
+				transformedObject.applyTransforms(transforms);
 			this.addPrintableObject(transformedObject);
 		}
 	}
@@ -160,10 +161,74 @@ public class ModelImpl implements Model
 			}
 			catch (NumberFormatException e)
 			{
-				// noop - the id isn't a number so we don't need to worry about it as it can't
+				// noop - the id isn't a number so we don't need to worry about
+				// it as it can't
 				// conflict with our new id which will be an integer.
 			}
 		}
 		return new Integer(maxId).toString();
 	}
+
+	public Material addMaterial(String materialName)
+	{
+		Material found = null;
+		for (Material material : materials)
+		{
+			if (material.getName().compareToIgnoreCase("materialName") == 0)
+			{
+				found = material;
+				break;
+			}
+		}
+
+		if (found == null)
+			found = new Material(materialName);
+
+		this.materials.addElement(found);
+
+		return found;
+
+	}
+
+	public Vector<Material> getMaterials()
+	{
+		return materials;
+	}
+
+	// Forces all objects to use the specified material.
+	public void forceMaterial(Material material)
+	{
+		for (PrintableObject object : printableObjects)
+		{
+			object.forceMaterial(material);
+		}
+
+	}
+
+	public Bounds computeBoundingBox()
+	{
+		Bounds bounds = new Bounds();
+
+		if (printableObjects.size() == 0)
+		{
+			bounds.setMin(new Vertex(0, 0, 0));
+			bounds.setMax(new Vertex(0, 0, 0));
+		}
+		else
+		{
+			// Initialise max and min to a random vertex (it doesn't matter at
+			// this stage)
+			bounds.setMin(printableObjects.elementAt(0).computeBoundingBox());
+			bounds.setMax(printableObjects.elementAt(0).computeBoundingBox());
+
+			for (PrintableObject printableObject : printableObjects)
+			{
+				bounds.updateMin(printableObject.computeBoundingBox());
+				bounds.updateMin(printableObject.computeBoundingBox());
+			}
+		}
+
+		return bounds;
+	}
+
 }
