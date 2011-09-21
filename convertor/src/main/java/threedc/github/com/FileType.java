@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import threedc.github.com.amf.AmfDecoder;
 import threedc.github.com.amf.AmfEncoder;
+import threedc.github.com.model.Units;
 import threedc.github.com.obj.ObjDecoder;
 import threedc.github.com.obj.ObjEncoder;
 import threedc.github.com.stl.StlDecoder;
@@ -23,15 +24,15 @@ public enum FileType
 		}
 
 		@Override
-		public Decoder getDecoder(String path) throws IOException
+		public Decoder getDecoder(String path, Units unit) throws IOException
 		{
-			return new StlDecoder(path);
+			return new StlDecoder(path, unit);
 		}
 
 		@Override
-		public Decoder getDecoder(File from) throws IOException
+		public Decoder getDecoder(File from, Units unit) throws IOException
 		{
-			return getDecoder(from.getAbsolutePath());
+			return getDecoder(from.getAbsolutePath(), unit);
 		}
 	},
 	STLB
@@ -43,15 +44,15 @@ public enum FileType
 		}
 
 		@Override
-		public Decoder getDecoder(String path) throws IOException
+		public Decoder getDecoder(String path, Units unit) throws IOException
 		{
-			return new StlbDecoder(path);
+			return new StlbDecoder(path, unit);
 		}
 
 		@Override
-		public Decoder getDecoder(File from) throws IOException
+		public Decoder getDecoder(File from, Units unit) throws IOException
 		{
-			return getDecoder(from.getAbsolutePath());
+			return getDecoder(from.getAbsolutePath(), unit);
 		}
 
 	},
@@ -64,15 +65,15 @@ public enum FileType
 		}
 
 		@Override
-		public Decoder getDecoder(String path) throws IOException
+		public Decoder getDecoder(String path, Units unit) throws IOException
 		{
-			return new ObjDecoder(path);
+			return new ObjDecoder(path, unit);
 		}
 
 		@Override
-		public Decoder getDecoder(File from) throws IOException
+		public Decoder getDecoder(File from, Units unit) throws IOException
 		{
-			return getDecoder(from.getAbsolutePath());
+			return getDecoder(from.getAbsolutePath(), unit);
 		}
 
 	},
@@ -85,22 +86,22 @@ public enum FileType
 		}
 
 		@Override
-		public Decoder getDecoder(String path) throws IOException
+		public Decoder getDecoder(String path, Units unit) throws IOException
 		{
 			return new AmfDecoder(path);
 		}
 
 		@Override
-		public Decoder getDecoder(File from) throws IOException
+		public Decoder getDecoder(File from, Units unit) throws IOException
 		{
-			return getDecoder(from.getAbsolutePath());
+			return getDecoder(from.getAbsolutePath(), unit);
 		}
 
 	};
 
 	abstract public Encoder getEncoder();
 
-	abstract public Decoder getDecoder(String path) throws IOException;
+	abstract public Decoder getDecoder(String path, Units unit) throws IOException;
 
-	abstract public Decoder getDecoder(File from) throws IOException;
+	abstract public Decoder getDecoder(File from, Units unit) throws IOException;
 }
