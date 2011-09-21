@@ -12908,7 +12908,7 @@
           </coordinates>
         </vertex>
       </vertices>
-      <region>
+      <volume>
         <triangle>
           <v1>1582</v1>
           <v2>1606</v2>
@@ -31324,7 +31324,7 @@
           <v2>718</v2>
           <v3>719</v3>
         </triangle>
-      </region>
+      </volume>
     </mesh>
   </object>
 </amf>
