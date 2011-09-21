@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import threedc.github.com.model.ModelImpl;
+import threedc.github.com.model.Units;
 import threedc.github.com.model.transforms.RotationTransform;
 import threedc.github.com.model.transforms.Transform;
 import threedc.github.com.model.transforms.TranslationTransform;
@@ -59,13 +60,13 @@ public class STLMergeTest
 		try
 		{
 			FileType decoderFileType = FileType.STL;
-			decoder = decoderFileType.getDecoder(fromRook);
+			decoder = decoderFileType.getDecoder(fromRook, Units.millimeter);
 			ModelImpl model1 = decoder.decode();
 			logger.info("Loaded model from: " + fromRook);
 			model1.dump(logger, false);
 
 			decoderFileType = FileType.STL;
-			decoder = decoderFileType.getDecoder(fromCube);
+			decoder = decoderFileType.getDecoder(fromCube, Units.millimeter);
 			ModelImpl model2 = decoder.decode();
 			logger.info("Loaded model from: " + fromCube);
 			model2.dump(logger, false);
@@ -88,7 +89,7 @@ public class STLMergeTest
 			// Now reload the output amf file, convert it back to an stl to
 			// ensure it is identical.
 			decoderFileType = FileType.AMF;
-			decoder = decoderFileType.getDecoder(toAMF);
+			decoder = decoderFileType.getDecoder(toAMF, Units.millimeter);
 			ModelImpl model = decoder.decode();
 			logger.info("Loaded model from: " + toAMF);
 			model.dump(logger, false);
