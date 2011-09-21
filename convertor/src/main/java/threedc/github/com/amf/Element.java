@@ -27,12 +27,12 @@ public enum Element
 			return new MeshHandler();
 		}
 	},
-	region
+	volume
 	{
 		@Override
 		public Handler getHandler()
 		{
-			return new RegionHandler();
+			return new VolumeHandler();
 		}
 	},
 	triangle
