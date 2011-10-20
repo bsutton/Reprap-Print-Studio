@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: bsutton
+Build-Jdk: 1.6.0_22
+Class-Path: xercesImpl-2.10.0.jar xml-apis-1.4.01.jar commons-configur
+ ation-1.6.jar commons-collections-3.2.1.jar commons-lang-2.4.jar comm
+ ons-logging-1.1.1.jar commons-digester-1.8.jar commons-beanutils-1.7.
+ 0.jar commons-beanutils-core-1.8.0.jar log4j-1.2.15.jar mail-1.4.jar 
+ activation-1.1.jar jms-1.1.jar jmxtools-1.2.1.jar jmxri-1.2.1.jar
+Main-Class: threedc.github.com.ThreeDConv
+Created-By: Maven Integration for Eclipse
+
