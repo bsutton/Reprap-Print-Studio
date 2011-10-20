@@ -1,7 +1,7 @@
 3dc allows the conversion between a number of populate 3d CAD file formats.
 
-3dc was specifically written to support work with the reprap 3d printer and is part of the
-multi-material tool change.
+3dc was specifically written to support work with the reprap 3d printer and is part of a
+multi-material tool chain that I'm developing.
 
 Compiling
 -------------------
