@@ -17,6 +17,7 @@ import threedc.github.com.model.Units;
 import threedc.github.com.model.transforms.RotationTransform;
 import threedc.github.com.model.transforms.Transform;
 import threedc.github.com.model.transforms.TranslationTransform;
+import threedc.github.com.util.InvalidFormatException;
 
 public class STLMergeTest
 {
@@ -108,6 +109,11 @@ public class STLMergeTest
 			TestCase.fail(e.getMessage());
 		}
 		catch (DecodeException e)
+		{
+			logger.error(e, e);
+			TestCase.fail(e.getMessage());
+		}
+		catch (InvalidFormatException e)
 		{
 			logger.error(e, e);
 			TestCase.fail(e.getMessage());

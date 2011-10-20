@@ -10,7 +10,7 @@ public class Vertex
 	private float normal;
 
 	// The index/position this vertex is stored in the set of verticies.
-	private int ordinal;
+	private int ordinal = -1;
 
 	public Vertex(float x, float y, float z)
 	{
@@ -27,38 +27,38 @@ public class Vertex
 		this.setNormal(normal);
 	}
 
-	public void setNormal(float normal)
+	final public void setNormal(final float normal)
 	{
 		this.normal = normal;
 		
 	}
 
-	public void setX(float x)
+	final public void setX(final float x)
 	{
 		this.x = x;
 	}
 
-	public float getX()
+	final public float getX()
 	{
 		return x;
 	}
 
-	public void setY(float y)
+	final public void setY(final float y )
 	{
 		this.y = y;
 	}
 
-	public float getY()
+	final public float getY()
 	{
 		return y;
 	}
 
-	public void setZ(float z)
+	final public void setZ(final float z)
 	{
 		this.z = z;
 	}
 
-	public float getZ()
+	final public float getZ()
 	{
 		return z;
 	}
@@ -69,12 +69,12 @@ public class Vertex
 	}
 	
 	// Returns the index of this vertex in the list of vertices for the model.
-	public int getOrdinal()
+	final public int getOrdinal()
 	{
 		return this.ordinal;
 	}
 
-	public float getNormal()
+	final public float getNormal()
 	{
 		return normal;
 	}
@@ -91,5 +91,9 @@ public class Vertex
 		return vertex;
 	}
 
+	public String toString()
+	{
+		return "x:" + x + ", y:" + y + ", z:" + z + ", normal:" + normal + ", ordinal:" + ordinal;
+	}
 
 }

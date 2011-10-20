@@ -3,8 +3,7 @@ package threedc.github.com.model.transforms;
 import threedc.github.com.model.Bounds;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Vertex;
-
-import com.beust.jcommander.ParameterException;
+import threedc.github.com.util.ParameterException;
 
 /**
  * performs are rotation of each vertex. The rotation is intended to be done 'on
@@ -17,22 +16,31 @@ import com.beust.jcommander.ParameterException;
  */
 public class RotationTransform implements Transform
 {
-	final private int xRotation;
-	final private int yRotation;
-	final private int zRotation;
+	// The angle to rotate the object in degrees
+	final private float xRotation;
+	final private float yRotation;
+	final private float zRotation;
+
 	private Bounds bounds;
 	private Vertex centre;
 
+	
 	// We cache these calculations as they are expensive and we use them for
 	// every vertex.
-	float xSin = (float) Math.sin(Math.toRadians(this.xRotation));
-	float xCos = (float) Math.cos(Math.toRadians(this.xRotation));
+	float xSin;
+	float xCos;
 
-	float ySin = (float) Math.sin(Math.toRadians(this.yRotation));
-	float yCos = (float) Math.cos(Math.toRadians(this.yRotation));
+	float ySin;
+	float yCos;
 
-	float zSin = (float) Math.sin(Math.toRadians(-this.zRotation));
-	float zCos = (float) Math.cos(Math.toRadians(-this.zRotation));
+	float zSin;
+	float zCos;
+
+	
+	public String toString()
+	{
+		return "xRotation:" + xRotation + ", yRotation:" + yRotation + ", zRotation:" + zRotation;
+	}
 
 	/**
 	 * Applies a translation to the object by moving it by the specified amount
@@ -42,11 +50,12 @@ public class RotationTransform implements Transform
 	 * @param y
 	 * @param z
 	 */
-	public RotationTransform(int xRotation, int yRotation, int zRotation)
+	public RotationTransform(float xRotation, float yRotation, float zRotation)
 	{
 		this.xRotation = xRotation;
 		this.yRotation = yRotation;
 		this.zRotation = zRotation;
+		init();
 	}
 
 	/**
@@ -54,19 +63,34 @@ public class RotationTransform implements Transform
 	 * corresponding rotational degrees for each axis.
 	 * 
 	 * @param args
+	 * @throws ParameterException
 	 */
-	public RotationTransform(String args)
+	public RotationTransform(String args) throws ParameterException
 	{
 		String[] degrees = args.split(":");
 		if (degrees.length != 3)
 			throw new ParameterException("A rotation must have three parts xx:yy:zz");
 
-		this.xRotation = Integer.parseInt(degrees[0]);
-		this.yRotation = Integer.parseInt(degrees[1]);
-		this.zRotation = Integer.parseInt(degrees[2]);
+		this.xRotation = Float.parseFloat(degrees[0]);
+		this.yRotation = Float.parseFloat(degrees[1]);
+		this.zRotation = Float.parseFloat(degrees[2]);
+		
+		init();
+	}
+	
+	private void init()
+	{
+		this.xSin = (float) Math.sin(Math.toRadians(this.xRotation));
+		this.xCos = (float) Math.cos(Math.toRadians(this.xRotation));
+
+		this.ySin = (float) Math.sin(Math.toRadians(this.yRotation));
+		this.yCos = (float) Math.cos(Math.toRadians(this.yRotation));
+
+		this.zSin = (float) Math.sin(Math.toRadians(-this.zRotation));
+		this.zCos = (float) Math.cos(Math.toRadians(-this.zRotation));
+
 	}
 
-	
 	public void prep(PrintableObject printableObject)
 	{
 		this.bounds = printableObject.computeBoundingBox();
@@ -78,13 +102,18 @@ public class RotationTransform implements Transform
 	 */
 	public void apply(Vertex vertex)
 	{
+		// cache these values for performance.
+		float xCentre = this.centre.getX();
+		float yCentre = this.centre.getY();
+		float zCentre = this.centre.getZ();
+
 		// Extract the co-ordinates and re-centre them around the origin
 		// so we rotate the object without moving it.
-		float x = vertex.getX() - this.centre.getX();
-		float y = vertex.getY() - this.centre.getY();
-		float z = vertex.getZ() - this.centre.getZ();
+		float x = vertex.getX() - xCentre;
+		float y = vertex.getY() - yCentre;
+		float z = vertex.getZ() - zCentre;
 
-		// intermediate storage for the co-ordinates as they go through the
+		// intermediate storage for the co-ordinates as they go through the0;//
 		// three axis' of rotation.
 		float zA, zB, xA, xB, yA, yB;
 
@@ -97,12 +126,17 @@ public class RotationTransform implements Transform
 		xB = xA * zCos - yA * zSin;
 		yB = xA * zSin + yA * zCos;
 
-		// Update the new co-ordinates moving them back from the origin to 
+		// Update the new co-ordinates moving them back from the origin to
 		// their original position.
-		vertex.setX(xB + this.centre.getX());
-		vertex.setY(yB + this.centre.getY());
-		vertex.setZ(zB + this.centre.getZ());
+		vertex.setX(xB + xCentre);
+		vertex.setY(yB + yCentre);
+		vertex.setZ(zB + zCentre);
 	}
 
+	public boolean equals(Object obj)
+	{
+		RotationTransform rhs = (RotationTransform) obj;
+		return this.xRotation == rhs.xRotation && this.yRotation == rhs.yRotation && this.zRotation == rhs.zRotation;
+	}
 
 }

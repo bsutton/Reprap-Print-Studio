@@ -2,8 +2,8 @@ package threedc.github.com.model.transforms;
 
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Vertex;
+import threedc.github.com.util.ParameterException;
 
-import com.beust.jcommander.ParameterException;
 
 public class TranslationTransform implements Transform
 {
@@ -12,6 +12,11 @@ public class TranslationTransform implements Transform
 	private float yOffset;
 	private float zOffset;
 
+	public String toString()
+	{
+		return "xOffset:" + xOffset + ", yOffset:" + yOffset + ", zOffset:" + zOffset;
+	}
+	
 	/**
 	 * Applies a translation to the object by moving it by the specified amount for each axis.
 	 * @param x
@@ -28,8 +33,9 @@ public class TranslationTransform implements Transform
 	/** takes a string of the form XXX:YYY:ZZZ
 	 * where XXX, YYY and ZZZ and the corresponding translation for each axis.
 	 * @param args
+	 * @throws ParameterException 
 	 */
-	public TranslationTransform(String args)
+	public TranslationTransform(String args) throws ParameterException
 	{
 	    String[] degrees = args.split(":");
 	    
@@ -56,6 +62,12 @@ public class TranslationTransform implements Transform
 	public void prep(PrintableObject printableObject)
 	{
 		// no op.
+	}
+
+	public boolean equals(Object obj)
+	{
+		TranslationTransform rhs = (TranslationTransform) obj;
+		return this.xOffset == rhs.xOffset && this.yOffset == rhs.yOffset && this.zOffset == rhs.zOffset;
 	}
 
 }

@@ -15,6 +15,7 @@ import org.junit.Test;
 import threedc.github.com.model.Material;
 import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.Units;
+import threedc.github.com.util.InvalidFormatException;
 
 
 public class AmfEncodeTest
@@ -104,6 +105,11 @@ public class AmfEncodeTest
 			logger.error(e, e);
 			TestCase.fail(e.getMessage());
 		}
+		catch (InvalidFormatException e)
+		{
+			logger.error(e, e);
+			TestCase.fail(e.getMessage());
+		}
 
 	}
 	
@@ -151,6 +157,11 @@ public class AmfEncodeTest
 			TestCase.fail(e.getMessage());
 		}
 		catch (DecodeException e)
+		{
+			logger.error(e, e);
+			TestCase.fail(e.getMessage());
+		}
+		catch (InvalidFormatException e)
 		{
 			logger.error(e, e);
 			TestCase.fail(e.getMessage());

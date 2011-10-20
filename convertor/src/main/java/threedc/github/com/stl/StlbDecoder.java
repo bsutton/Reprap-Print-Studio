@@ -11,8 +11,7 @@ import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 import threedc.github.com.model.Units;
 import threedc.github.com.model.Vertex;
-
-import com.sun.media.sound.InvalidFormatException;
+import threedc.github.com.util.InvalidFormatException;
 
 public class StlbDecoder implements Decoder
 {
@@ -30,7 +29,7 @@ public class StlbDecoder implements Decoder
 		this.unit = unit;
 	}
 
-	public ModelImpl decode() throws IOException, EOFException
+	public ModelImpl decode() throws IOException, EOFException, InvalidFormatException
 	{
 		long fsize = b.size();
 

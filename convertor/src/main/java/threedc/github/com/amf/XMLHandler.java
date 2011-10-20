@@ -1,5 +1,6 @@
 package threedc.github.com.amf;
 
+
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

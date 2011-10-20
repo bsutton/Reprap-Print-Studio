@@ -1,10 +1,10 @@
 package threedc.github.com.util;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Vector;
 
-public class SortedVector<T> extends Vector<T>
+public class SortedVector<T> extends ArrayList<T>
 {
 	private static final long serialVersionUID = 1L;
 	private Comparator<T> comparator;
@@ -20,11 +20,16 @@ public class SortedVector<T> extends Vector<T>
 	{
 		int index = Collections.binarySearch(this, o, this.comparator);
 		if (index > -1)
-			throw new RuntimeException("Duplicate Vertex");
+			throw new RuntimeException("Duplicate Vertex " + o.toString());
 
 		super.add(-index - 1, o);
 		
 		return true;
+	}
+	
+	public synchronized void add(int index, T o)
+	{
+		super.add(index, o);
 	}
 
 	/*
@@ -53,7 +58,7 @@ public class SortedVector<T> extends Vector<T>
 		// index = -1;
 		T t = null;
 		if (index > -1)
-			t = this.elementAt(index);
+			t = this.get(index);
 
 		return t;
 	}

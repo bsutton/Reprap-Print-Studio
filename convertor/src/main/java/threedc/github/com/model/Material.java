@@ -37,4 +37,9 @@ public class Material
 		return id;
 	}
 	
+	public String toString()
+	{
+		return "id:" + id + ", name:" + name;
+	}
+	
 }

@@ -1,10 +1,12 @@
 package threedc.github.com.model;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
 import threedc.github.com.model.transforms.Transform;
+import threedc.github.com.util.OrdinalComparator;
 import threedc.github.com.util.SortedVector;
 import threedc.github.com.util.VertexComparator;
 
@@ -27,15 +29,16 @@ public class PrintableObject implements Cloneable
 
 	// Vertex's in printable objects need to be handled carefully.
 	// In some implementations they are just a set of un-ordered vertexes (STL)
-	// in other implementations the order the vertexes are stored in is critical
+	// in other implementations (AMF) the order the vertexes are stored in is
+	// critical
 	// as triangles refer to the vertexes via their ordinal (position in the
 	// original file).
 	// It should also be noted that typically a single vertex is referenced by 6
 	// triangles
 	// so allowing triangles to share these vertexes will reduce the memory
 	// footprint.
-	Vector<Vertex> vertexes = new Vector<Vertex>();
-	Vector<Vertex> normals = new Vector<Vertex>();
+	SortedVector<Vertex> vertexes;
+	SortedVector<Vertex> normals;
 
 	private Vector<Volume> volumes = new Vector<Volume>();
 
@@ -44,6 +47,11 @@ public class PrintableObject implements Cloneable
 	 * that owns the object.
 	 */
 	private Units units;
+	
+	public String toString()
+	{
+		return "id:" + id + " mode: " + vertexMode + " vertexes:" + vertexes.size() + " volumes:" + volumes.size();
+	}
 
 	public PrintableObject(String id, VertexMode mode, Units units)
 	{
@@ -57,6 +65,11 @@ public class PrintableObject implements Cloneable
 		{
 			vertexes = new SortedVector<Vertex>(new VertexComparator());
 			normals = new SortedVector<Vertex>(new VertexComparator());
+		}
+		else
+		{
+			vertexes = new SortedVector<Vertex>(new OrdinalComparator());
+			normals = new SortedVector<Vertex>(new OrdinalComparator());
 		}
 
 	}
@@ -85,10 +98,10 @@ public class PrintableObject implements Cloneable
 
 	public Vertex getVertex(int index)
 	{
-		return vertexes.elementAt(index);
+		return vertexes.get(index);
 	}
 
-	public Vector<Vertex> getVertexes()
+	public ArrayList<Vertex> getVertexes()
 	{
 		return this.vertexes;
 	}
@@ -101,29 +114,17 @@ public class PrintableObject implements Cloneable
 
 	public Vertex addVertex(Vertex vertex)
 	{
-		int ordinal = -1;
 
-		if (this.vertexMode == VertexMode.Sorted)
+		int index = vertexes.binarySearch(vertex);
+		if (index > -1)
 		{
-			int index = ((SortedVector<Vertex>) vertexes).binarySearch(vertex);
-			if (index > -1)
-			{
-				vertex = vertexes.elementAt(index);
-				ordinal = index;
-			}
-			else
-			{
-				vertexes.add(-index - 1, vertex);
-				ordinal = -index - 1;
-			}
+			vertex = vertexes.get(index);
 		}
 		else
 		{
-			ordinal = vertexes.size();
-			vertexes.add(vertex);
+			vertex.setOrdinal(-index - 1);
+			vertexes.add(-index - 1, vertex);
 		}
-
-		vertex.setOrdinal(ordinal);
 
 		return vertex;
 	}
@@ -143,7 +144,7 @@ public class PrintableObject implements Cloneable
 
 	public Vertex getNormal(int index)
 	{
-		return normals.elementAt(index);
+		return normals.get(index);
 	}
 
 	public void dump()
@@ -208,7 +209,7 @@ public class PrintableObject implements Cloneable
 	 */
 	Vertex getVertex(Vertex vertex)
 	{
-		return ((SortedVector<Vertex>) vertexes).find(vertex);
+		return vertexes.find(vertex);
 	}
 
 	/**
@@ -219,7 +220,7 @@ public class PrintableObject implements Cloneable
 	 */
 	Vertex getNormal(Vertex normal)
 	{
-		return ((SortedVector<Vertex>) normals).find(normal);
+		return normals.find(normal);
 	}
 
 	public void setID(String newID)
@@ -248,12 +249,13 @@ public class PrintableObject implements Cloneable
 
 	public void applyTransforms(Transform[] transforms)
 	{
-		
+
 		// Allow each transform to do any last minute preparation that
 		// may require knowledge of the object being transformed.
 		for (Transform transform : transforms)
 		{
-			transform.prep(this);
+			if (transform != null)
+				transform.prep(this);
 		}
 
 		int processors = Runtime.getRuntime().availableProcessors();
@@ -264,7 +266,7 @@ public class PrintableObject implements Cloneable
 
 		int first = 0; // inclusive
 		int last = allocation; // exclusive
-		
+
 		Vector<Transformer> transformers = new Vector<Transformer>();
 		do
 		{
@@ -291,37 +293,6 @@ public class PrintableObject implements Cloneable
 
 	}
 
-	// Used so that we can apply transform using multiple threads.
-	class Transformer extends Thread
-	{
-		final Vector<Vertex> vertexes;
-		final int first;
-		final int last;
-		final Transform[] transforms;
-
-		Transformer(Vector<Vertex> vertexes, int first, int last, Transform[] transforms)
-		{
-			this.vertexes = vertexes;
-			this.first = first;
-			this.last = last;
-			this.transforms = transforms;
-			this.setPriority(MIN_PRIORITY);
-			this.setName("Transformer");
-		}
-
-		public void run()
-		{
-			// Apply the set of transforms to each vertex.
-			for (Vertex vertex : vertexes.subList(first, last))
-			{
-				for (Transform transform : transforms)
-				{
-					transform.apply(vertex);
-				}
-			}
-		}
-	}
-
 	public Bounds computeBoundingBox()
 	{
 		Bounds bounds = new Bounds();
@@ -341,7 +312,7 @@ public class PrintableObject implements Cloneable
 
 			for (Volume volume : volumes)
 			{
-				// we have already added in the bounds of the first volume so as 
+				// we have already added in the bounds of the first volume so as
 				// an optimisation we avoid doing it again.
 				if (volume0 != null)
 				{

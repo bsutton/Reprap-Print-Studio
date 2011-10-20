@@ -12,8 +12,8 @@ import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Triangle;
 import threedc.github.com.model.Units;
 import threedc.github.com.model.Vertex;
+import threedc.github.com.util.InvalidFormatException;
 
-import com.sun.media.sound.InvalidFormatException;
 
 public class StlDecoder implements Decoder
 {
@@ -34,7 +34,7 @@ public class StlDecoder implements Decoder
 		br = new BufferedReader(new FileReader(path));
 	}
 
-	public ModelImpl decode() throws IOException
+	public ModelImpl decode() throws IOException, InvalidFormatException
 	{
 		String header = "solid";
 		String facet = "facet";

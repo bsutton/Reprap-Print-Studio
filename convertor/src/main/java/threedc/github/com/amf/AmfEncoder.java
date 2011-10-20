@@ -24,7 +24,8 @@ import threedc.github.com.model.Volume;
 
 public class AmfEncoder implements Encoder
 {
-	String version = "1.0";
+	private String version = "1.0";
+	private File file;
 
 	public void encode(ModelImpl model, String output_path) throws IOException
 	{
@@ -38,6 +39,7 @@ public class AmfEncoder implements Encoder
 
 	public void encode(ModelImpl model, File output, boolean split) throws IOException
 	{
+		this.file = output;
 		FileOutputStream xmlFile = new FileOutputStream(output);
 		StreamResult streamResult = new StreamResult(xmlFile);
 		SAXTransformerFactory tf = (SAXTransformerFactory) SAXTransformerFactory.newInstance();
@@ -163,8 +165,7 @@ public class AmfEncoder implements Encoder
 
 	public String getFilePath() throws IOException
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return file.getCanonicalPath();
 	}
 
 

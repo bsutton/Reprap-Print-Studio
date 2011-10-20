@@ -13,6 +13,11 @@ public class Triangle
 	// The triangle normal should not be confused with the vertex normal which is used to define a curved line.
 	private Vertex normal;
 
+	public String toString()
+	{
+		return "v1:" + v1 + ", v2:" + v2 + ",v3" + v3 + ", normal:" + normal;
+	}
+	
 	public Triangle(Vertex v1, Vertex v2, Vertex v3, Vertex normal)
 	{
 		setV1(v1);

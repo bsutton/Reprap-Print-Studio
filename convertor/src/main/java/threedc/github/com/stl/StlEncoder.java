@@ -105,6 +105,7 @@ public class StlEncoder implements Encoder
 		DecimalFormat nf15 = new DecimalFormat();
 		nf15.setMinimumFractionDigits(15);
 		nf15.setMaximumFractionDigits(15);
+		nf15.setGroupingUsed(false);
 		out.write(nf15.format(v.getX()));
 		out.write(" ");
 		out.write(nf15.format(v.getY()));

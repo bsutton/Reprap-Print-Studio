@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import threedc.github.com.STLMergeTest;
 import threedc.github.com.model.PrintableObject.VertexMode;
+import threedc.github.com.model.transforms.RotationTransform;
 import threedc.github.com.model.transforms.Transform;
 import threedc.github.com.model.transforms.UnitTransform;
 
@@ -35,7 +36,7 @@ public class PrintableObjectTest
 	}
 
 	@Test
-	public void transformTest()
+	public void unitTransformTest()
 	{
 		PrintableObject po = new PrintableObject("1", VertexMode.Ordered, Units.feet);
 		int count = 10000000;
@@ -73,6 +74,78 @@ public class PrintableObjectTest
 			Assert.assertEquals(vertex.getX(), i * conversion);
 			Assert.assertEquals(vertex.getY(), i * conversion);
 			Assert.assertEquals(vertex.getZ(), i * conversion);
+			i++;
+		}
+		Assert.assertEquals(po.getVertexCount(), count);
+
+	}
+
+	@Test
+	public void rotationTransformTest()
+	{
+		PrintableObject po = new PrintableObject("1", VertexMode.Ordered, Units.millimeter);
+		int count = 10000;
+		po.addVertex(new Vertex(0, 0, 0));
+		for (int i = 0; i < count; i++)
+		{
+			po.addVertex(new Vertex(1, 1, 1));
+		}
+
+		Transform[] transforms = new Transform[]
+		{ new RotationTransform(90, 0, 0) };
+		po.applyTransforms(transforms);
+
+		int i = 0;
+		for (Vertex vertex : po.getVertexes())
+		{
+			if (i == 0)
+			{
+				Assert.assertEquals(0.0F, vertex.getX());
+				Assert.assertEquals(0.0F, vertex.getY());
+				Assert.assertEquals(0.0F, vertex.getZ());
+			}
+			else
+			{
+				Assert.assertEquals(1.0F, vertex.getX());
+				Assert.assertEquals(1.0F, vertex.getY());
+				Assert.assertEquals(0.0F, vertex.getZ());
+			}
+			i++;
+		}
+		Assert.assertEquals(po.getVertexCount(), count);
+
+		po = new PrintableObject("1", VertexMode.Sorted, Units.millimeter);
+		// We need to insert at least one different vertex otherwise we are
+		// dealing with a point
+		// and a point rotated on the spot looks just the same after it gets
+		// rotated.
+		po.addVertex(new Vertex(1, 1, 1));
+
+		for (i = 0; i < count; i++)
+		{
+			po.addVertex(new Vertex(2, 2, 2));
+		}
+
+		transforms = new Transform[]
+		{ new RotationTransform(180, 180, 180) };
+		po.applyTransforms(transforms);
+
+		i = 0;
+		for (Vertex vertex : po.getVertexes())
+		{
+			if (i == 0)
+			{
+				Assert.assertEquals(vertex.getX(), 1);
+				Assert.assertEquals(vertex.getY(), 1);
+				Assert.assertEquals(vertex.getZ(), 1);
+			}
+			else
+			{
+
+				Assert.assertEquals(vertex.getX(), -1);
+				Assert.assertEquals(vertex.getY(), 0);
+				Assert.assertEquals(vertex.getZ(), -1);
+			}
 			i++;
 		}
 		Assert.assertEquals(po.getVertexCount(), count);

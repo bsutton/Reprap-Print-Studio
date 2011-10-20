@@ -20,6 +20,11 @@ public class ModelImpl implements Model
 	private String version;
 	private Vector<Material> materials = new Vector<Material>();
 
+	public String toString()
+	{
+		return "version:" + version + " units:" + units + " objects:" + printableObjects.size() + " materials:" + materials.size();
+	}
+	
 	public void addPrintableObject(PrintableObject object)
 	{
 		printableObjects.add(object);
@@ -122,8 +127,8 @@ public class ModelImpl implements Model
 		// merged model.
 		Map<String, String> objectIDMap = new Hashtable<String, String>();
 
-		if (this.units != rhs.units)
-			throw new IllegalStateException("The units of both models must match.");
+		if (!this.units.equals(rhs.units))
+			throw new IllegalStateException("The units of both models must match. " + this.getUnits() + " != " + rhs.getUnits());
 
 		for (PrintableObject object : rhs.getPrintableObjects())
 		{

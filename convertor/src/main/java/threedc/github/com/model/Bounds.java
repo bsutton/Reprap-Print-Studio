@@ -7,12 +7,12 @@ public class Bounds
 	
 	public void setMin(Vertex vertex)
 	{
-		this.min = vertex;
+		this.min = vertex.clone();
 		
 	}
 	public void setMax(Vertex vertex)
 	{
-		this.max = vertex;
+		this.max = vertex.clone();
 	}
 	public void updateMin(Vertex v1)
 	{
@@ -30,12 +30,12 @@ public class Bounds
 	}
 	public void setMin(Bounds boundingBox)
 	{
-		min = boundingBox.min;
+		min = boundingBox.min.clone();
 	}
 	
 	public void setMax(Bounds boundingBox)
 	{
-		max = boundingBox.max;
+		max = boundingBox.max.clone();
 	}
 
 	public void updateMin(Bounds boundingBox)
@@ -51,12 +51,16 @@ public class Bounds
 	
 	public Vertex calculateGeometricCentre()
 	{
-		float x = (max.getX() - min.getX()) / 2;
-		float y = (max.getY() - min.getY()) / 2;
-		float z = (max.getZ() - min.getZ()) / 2;
+		float x = min.getX() + (max.getX() - min.getX()) / 2;
+		float y = min.getY() + (max.getY() - min.getY()) / 2;
+		float z = min.getZ() + (max.getZ() - min.getZ()) / 2;
 		
-		return new Vertex(min.getX() + x, min.getY() + y, min.getZ() + z);
+		return new Vertex(x, y, z);
 	}
 
+	public String toString()
+	{
+		return "min:" + min + ", max:" + max;
+	}
 
 }

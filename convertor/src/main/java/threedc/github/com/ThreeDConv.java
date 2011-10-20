@@ -19,26 +19,34 @@ import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
 
-import threedc.github.com.CmdLineParser.ParameterException;
 import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
 import threedc.github.com.model.Units;
-import threedc.github.com.model.transforms.Transform;
-import threedc.github.com.model.transforms.UnitTransform;
 import threedc.github.com.util.FileUtility;
+import threedc.github.com.util.ParameterException;
+import threedc.github.com.util.Tasker;
 
 public class ThreeDConv
 {
 	static Logger logger = Logger.getLogger(ThreeDConv.class);
+	static String VERSION = "1.0";
 
 	public static void main(String[] args)
 	{
 		initLogger();
+		process(args);
+	}
+
+	static void process(String[] args)
+	{
 		ThreeDConv self = new ThreeDConv();
 		CmdLineParser clp = new CmdLineParser();
 		try
 		{
 			clp.parse(args);
+			if (clp.showVersion())
+				System.out.println("3DC Version: " + VERSION);
+			
 			self.doRun(clp, args);
 		}
 		catch (ParameterException e)
@@ -46,56 +54,72 @@ public class ThreeDConv
 			logger.error(e);
 			show_usage();
 		}
+
 	}
 
-	void doRun(CmdLineParser cmd, String[] args)
+	void doRun(CmdLineParser cmd, String[] args) throws ParameterException
 	{
-		ModelImpl outputModel = new ModelImpl();
-		Decoder decoder;
 		Encoder encoder;
+		ModelImpl outputModel = new ModelImpl();
+		outputModel.setUnits(cmd.getOutputFile().getUnits());
+		
 
 		try
 		{
-			// load each input file and merge it into the output model applying 
-			// any transformations as we go.
-			for (InputFile inputFile : cmd.getInputFiles())
+			FileLoadActor loader = new FileLoadActor(outputModel.getUnits());
+
+			// Import each file in parallel
+			Tasker<InputFile> tasker = new Tasker<InputFile>(cmd.getInputFiles(), loader, Tasker.ACTOR_TYPE.SLOW);
+			tasker.run();
+			if (tasker.failed())
 			{
-				FileType decoderFileType = FileType
-						.valueOf(FileUtility.getExtension(inputFile.getFile()).toUpperCase());
-				decoder = decoderFileType.getDecoder(inputFile.getFile(), inputFile.getUnits());
-				ModelImpl inputModel = decoder.decode();
-				inputModel.addMaterial(inputFile.getMaterial());
-				Transform[] transforms = new Transform[]
-				{ new UnitTransform(inputFile.getUnits(), outputModel.getUnits()), inputFile.getTranslation(),
-					inputFile.getRotation()};
-
-				outputModel.merge(inputModel, transforms);
+				for (Tasker<InputFile>.FailCause<InputFile> cause : tasker.getFailCauses())
+				{
+					System.out.println("Error loading " + cause.toString());
+				}
 			}
-			FileType encoderFileType = FileType.valueOf(FileUtility.getExtension(cmd.getOutputFile()).toUpperCase());
+			else
+			{
 
-			encoder = encoderFileType.getEncoder();
-			encoder.encode(outputModel, cmd.getOutputFile());
+				// load each input file and merge it into the output model
+				// applying
+				// any transformations as we go.
+				for (InputFile inputFile : cmd.getInputFiles())
+				{
+					outputModel.merge(inputFile.getModel(), null);
+				}
 
-			System.out.println("Saved: " + outputModel.getTriangleCount() + " triangles" + " to "
-					+ encoder.getFilePath());
+				FileType encoderFileType;
+				try
+				{
+					encoderFileType = FileType.valueOf(FileUtility.getExtension(cmd.getOutputFile().getFile())
+							.toUpperCase());
+				}
+				catch (IllegalArgumentException e)
+				{
+					throw new ParameterException("Unknown file extension: " + cmd.getOutputFile().getFile());
+				}
+
+				encoder = encoderFileType.getEncoder();
+				encoder.encode(outputModel, cmd.getOutputFile().getFile());
+
+				System.out.println("Saved: " + outputModel.getTriangleCount() + " triangles" + " to "
+						+ encoder.getFilePath());
+			}
 		}
 		catch (IOException e)
 		{
 			logger.error(e, e);
 		}
-		catch (DecodeException e)
-		{
-			logger.error(e, e);
-		}
 
-		dump(outputModel);
+		// dump(outputModel);
 
 	}
 
 	static void show_usage()
 	{
 		System.out
-				.println("Usage: java threedc.github.com.ThreeDConv -i <input_file>  -t|-translate xx:yy:zz  -r|-rotate x:y:z -i <output_file> -u <units>\n"
+				.println("Usage: java threedc.github.com.ThreeDConv -i <input_file>  -u <units> -t|-translate xx:yy:zz  -r|-rotate x:y:z -i <output_file> -u <units>\n"
 						+ "Any number of input files may be specified.\n"
 						+ "Each input file may have one or zero translates and one or zero rotates.\n"
 						+ " -i <input_file> specifies an input file to be merged into the output file.\n"
@@ -103,9 +127,10 @@ public class ThreeDConv
 						+ " -r xx:yy:zz specifies a rotation in 3d space to be applied by the preceeding input file. Each component is an decimal angle in degrees.\n"
 						+ " -m 'material' specifies the name of the material to associated with the preceeding input file.\n"
 						+ " -o <output_file> specifies the output file that all input files will be merged into.\n"
-						+ " -u <units> that the output file should be written in (currently all input files must be in the same units.)\n"
+						+ " -u <units> that the input or output file use. If different then a conversion will be applied.\n"
 						+ "    The set of supported units are: "
 						+ Units.valuesAsString()
+						+ " -v displays the version number."
 						+ ".\n"
 						+ "A single output file must be specified.");
 	}

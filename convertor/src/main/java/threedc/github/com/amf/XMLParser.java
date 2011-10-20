@@ -22,7 +22,7 @@ public class XMLParser
 {
 	/** Create Object For SiteList Class */
 	static Vector<PrintableObject> printableObjectList = new Vector<PrintableObject>();
-	
+
 	private ModelImpl model;
 
 	private static final String AMF_SOURCE = "/home/bsutton/git/3dc/convertor/src/test/resources/rook.amf";
@@ -31,7 +31,6 @@ public class XMLParser
 	{
 		this.model = model;
 	}
-
 
 	static public void main(String args[])
 
@@ -60,7 +59,6 @@ public class XMLParser
 		}
 	}
 
-	
 	public void parse(File source) throws ParserConfigurationException, SAXException, IOException
 	{
 		// First lets validate the xml
@@ -76,7 +74,7 @@ public class XMLParser
 		SAXParserFactory spf = SAXParserFactory.newInstance();
 		SAXParser sp = spf.newSAXParser();
 		XMLReader xr = sp.getXMLReader();
-		
+
 		/** Create handler to handle XML Tags */
 		XMLHandler xmlHandler = new XMLHandler(this, model);
 		xr.setContentHandler(xmlHandler);
