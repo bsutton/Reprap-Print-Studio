@@ -8,6 +8,8 @@ import org.apache.log4j.Logger;
 import threedc.github.com.model.transforms.Transform;
 import threedc.github.com.util.OrdinalComparator;
 import threedc.github.com.util.SortedVector;
+import threedc.github.com.util.Tasker;
+import threedc.github.com.util.Tasker.ACTOR_TYPE;
 import threedc.github.com.util.VertexComparator;
 
 /*
@@ -47,7 +49,7 @@ public class PrintableObject implements Cloneable
 	 * that owns the object.
 	 */
 	private Units units;
-	
+
 	public String toString()
 	{
 		return "id:" + id + " mode: " + vertexMode + " vertexes:" + vertexes.size() + " volumes:" + volumes.size();
@@ -247,7 +249,7 @@ public class PrintableObject implements Cloneable
 		return this.units;
 	}
 
-	public void applyTransforms(Transform[] transforms)
+	public void applyTransforms(Transform[] transforms) throws Exception
 	{
 
 		// Allow each transform to do any last minute preparation that
@@ -255,41 +257,23 @@ public class PrintableObject implements Cloneable
 		for (Transform transform : transforms)
 		{
 			if (transform != null)
+			{
 				transform.prep(this);
-		}
+				TransformActor ta = new TransformActor(transform);
+				Tasker<Vertex> tasker = new Tasker<Vertex>(vertexes, ta, ACTOR_TYPE.FAST);
+				tasker.run();
+				if (tasker.failed())
+				{
+					for (Tasker<Vertex>.FailCause<Vertex> cause : tasker.getFailCauses())
+					{
+						throw cause.getCause();
+					}
+				}
 
-		int processors = Runtime.getRuntime().availableProcessors();
-
-		int count = vertexes.size();
-
-		int allocation = count / processors;
-
-		int first = 0; // inclusive
-		int last = allocation; // exclusive
-
-		Vector<Transformer> transformers = new Vector<Transformer>();
-		do
-		{
-			Transformer t = new Transformer(vertexes, first, last, transforms);
-			t.start();
-			transformers.add(t);
-			first = last;
-			last = Math.min(last + allocation, count);
-
-		} while (first < count);
-
-		// wait for all of the threads to finish.
-		for (Transformer transformer : transformers)
-		{
-			try
-			{
-				transformer.join();
 			}
-			catch (InterruptedException e)
-			{
-				e.printStackTrace();
-			}
+
 		}
+	
 
 	}
 
