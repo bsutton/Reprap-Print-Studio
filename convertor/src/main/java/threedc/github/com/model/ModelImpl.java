@@ -120,7 +120,7 @@ public class ModelImpl implements Model
 	 * use the same units.
 	 */
 
-	public void merge(ModelImpl rhs, Transform[] transforms)
+	public void merge(ModelImpl rhs, Transform[] transforms) throws Exception
 	{
 		// Maps a set of old PrintableObject id's to the new ID's they will have
 		// in the
