@@ -34,10 +34,17 @@ public class ThreeDConv
 	public static void main(String[] args)
 	{
 		initLogger();
-		process(args);
+		try
+		{
+			process(args);
+		}
+		catch (Exception e)
+		{
+			logger.error(e,e);
+		}
 	}
 
-	static void process(String[] args)
+	static void process(String[] args) throws Exception
 	{
 		ThreeDConv self = new ThreeDConv();
 		CmdLineParser clp = new CmdLineParser();
@@ -57,7 +64,7 @@ public class ThreeDConv
 
 	}
 
-	void doRun(CmdLineParser cmd, String[] args) throws ParameterException
+	void doRun(CmdLineParser cmd, String[] args) throws Exception
 	{
 		Encoder encoder;
 		ModelImpl outputModel = new ModelImpl();

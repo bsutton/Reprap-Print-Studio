@@ -1,7 +1,6 @@
 package threedc.github.com;
 
 import java.io.File;
-import java.io.IOException;
 
 import threedc.github.com.model.ModelImpl;
 import threedc.github.com.model.PrintableObject;
@@ -12,7 +11,6 @@ import threedc.github.com.model.transforms.TranslationTransform;
 import threedc.github.com.model.transforms.UnitTransform;
 import threedc.github.com.util.Actor;
 import threedc.github.com.util.FileUtility;
-import threedc.github.com.util.InvalidFormatException;
 
 class InputFile implements Actor<InputFile>
 {
@@ -113,7 +111,7 @@ class InputFile implements Actor<InputFile>
 		return this.unit;
 	}
 
-	public void load(Units targetUnits) throws IOException, DecodeException, InvalidFormatException
+	public void load(Units targetUnits) throws Exception
 	{
 		FileType decoderFileType = FileType.valueOf(FileUtility.getExtension(this.getFile()).toUpperCase());
 		Decoder decoder = decoderFileType.getDecoder(this.getFile(), this.getUnits());
