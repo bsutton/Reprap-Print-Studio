@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="1" time="0.01" errors="0" skipped="0" tests="6" name="threedc.github.com.CmdLineParserTest">
+<testsuite failures="0" time="0.008" errors="0" skipped="0" tests="6" name="threedc.github.com.CmdLineParserTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-openjdk/jre/lib/amd64"/>
@@ -9,17 +9,17 @@
     <property name="path.separator" value=":"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="user.country" value="US"/>
+    <property name="user.country" value="AU"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/home/brett/git/3dc/convertor"/>
+    <property name="user.dir" value="/home/bsutton/git/3dc/convertor"/>
     <property name="java.runtime.version" value="1.6.0_22-b22"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="basedir" value="/home/brett/git/3dc/convertor"/>
+    <property name="basedir" value="/home/bsutton/git/3dc/convertor"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-openjdk/jre/lib/endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="surefire.real.class.path" value="/tmp/surefirebooter3578654524059169168.jar"/>
+    <property name="surefire.real.class.path" value="/home/bsutton/git/3dc/convertor/target/surefire/surefirebooter8216026609467884679.jar"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
@@ -27,22 +27,22 @@
     <property name="os.name" value="Linux"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
-    <property name="surefire.test.class.path" value="/home/brett/git/3dc/convertor/target/test-classes:/home/brett/git/3dc/convertor/target/classes:/home/brett/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/brett/.m2/repository/xerces/xercesImpl/2.10.0/xercesImpl-2.10.0.jar:/home/brett/.m2/repository/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar:/home/brett/.m2/repository/commons-configuration/commons-configuration/1.6/commons-configuration-1.6.jar:/home/brett/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/home/brett/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/home/brett/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/brett/.m2/repository/commons-digester/commons-digester/1.8/commons-digester-1.8.jar:/home/brett/.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar:/home/brett/.m2/repository/commons-beanutils/commons-beanutils-core/1.8.0/commons-beanutils-core-1.8.0.jar:/home/brett/.m2/repository/log4j/log4j/1.2.15/log4j-1.2.15.jar:/home/brett/.m2/repository/javax/mail/mail/1.4/mail-1.4.jar:/home/brett/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/home/brett/.m2/repository/javax/jms/jms/1.1/jms-1.1.jar:/home/brett/.m2/repository/com/sun/jdmk/jmxtools/1.2.1/jmxtools-1.2.1.jar:/home/brett/.m2/repository/com/sun/jmx/jmxri/1.2.1/jmxri-1.2.1.jar:"/>
+    <property name="surefire.test.class.path" value="/home/bsutton/git/3dc/convertor/target/test-classes:/home/bsutton/git/3dc/convertor/target/classes:/home/bsutton/.m2/repository/xerces/xercesImpl/2.10.0/xercesImpl-2.10.0.jar:/home/bsutton/.m2/repository/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar:/home/bsutton/.m2/repository/commons-configuration/commons-configuration/1.6/commons-configuration-1.6.jar:/home/bsutton/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/home/bsutton/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/home/bsutton/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/bsutton/.m2/repository/commons-digester/commons-digester/1.8/commons-digester-1.8.jar:/home/bsutton/.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar:/home/bsutton/.m2/repository/commons-beanutils/commons-beanutils-core/1.8.0/commons-beanutils-core-1.8.0.jar:/home/bsutton/.m2/repository/log4j/log4j/1.2.15/log4j-1.2.15.jar:/home/bsutton/.m2/repository/javax/mail/mail/1.4/mail-1.4.jar:/home/bsutton/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/home/bsutton/.m2/repository/javax/jms/jms/1.1/jms-1.1.jar:/home/bsutton/.m2/repository/com/sun/jdmk/jmxtools/1.2.1/jmxtools-1.2.1.jar:/home/bsutton/.m2/repository/com/sun/jmx/jmxri/1.2.1/jmxri-1.2.1.jar:/home/bsutton/.m2/repository/junit/junit/4.0/junit-4.0.jar:"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="50.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="2.6.38-11-generic"/>
-    <property name="user.home" value="/home/brett"/>
+    <property name="user.home" value="/home/bsutton"/>
     <property name="user.timezone" value=""/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="1.6"/>
     <property name="user.name" value="bsutton"/>
-    <property name="java.class.path" value="/home/brett/git/3dc/convertor/target/test-classes:/home/brett/git/3dc/convertor/target/classes:/home/brett/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/brett/.m2/repository/xerces/xercesImpl/2.10.0/xercesImpl-2.10.0.jar:/home/brett/.m2/repository/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar:/home/brett/.m2/repository/commons-configuration/commons-configuration/1.6/commons-configuration-1.6.jar:/home/brett/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/home/brett/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/home/brett/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/brett/.m2/repository/commons-digester/commons-digester/1.8/commons-digester-1.8.jar:/home/brett/.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar:/home/brett/.m2/repository/commons-beanutils/commons-beanutils-core/1.8.0/commons-beanutils-core-1.8.0.jar:/home/brett/.m2/repository/log4j/log4j/1.2.15/log4j-1.2.15.jar:/home/brett/.m2/repository/javax/mail/mail/1.4/mail-1.4.jar:/home/brett/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/home/brett/.m2/repository/javax/jms/jms/1.1/jms-1.1.jar:/home/brett/.m2/repository/com/sun/jdmk/jmxtools/1.2.1/jmxtools-1.2.1.jar:/home/brett/.m2/repository/com/sun/jmx/jmxri/1.2.1/jmxri-1.2.1.jar:"/>
+    <property name="java.class.path" value="/home/bsutton/git/3dc/convertor/target/test-classes:/home/bsutton/git/3dc/convertor/target/classes:/home/bsutton/.m2/repository/xerces/xercesImpl/2.10.0/xercesImpl-2.10.0.jar:/home/bsutton/.m2/repository/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar:/home/bsutton/.m2/repository/commons-configuration/commons-configuration/1.6/commons-configuration-1.6.jar:/home/bsutton/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/home/bsutton/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/home/bsutton/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/bsutton/.m2/repository/commons-digester/commons-digester/1.8/commons-digester-1.8.jar:/home/bsutton/.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar:/home/bsutton/.m2/repository/commons-beanutils/commons-beanutils-core/1.8.0/commons-beanutils-core-1.8.0.jar:/home/bsutton/.m2/repository/log4j/log4j/1.2.15/log4j-1.2.15.jar:/home/bsutton/.m2/repository/javax/mail/mail/1.4/mail-1.4.jar:/home/bsutton/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/home/bsutton/.m2/repository/javax/jms/jms/1.1/jms-1.1.jar:/home/bsutton/.m2/repository/com/sun/jdmk/jmxtools/1.2.1/jmxtools-1.2.1.jar:/home/bsutton/.m2/repository/com/sun/jmx/jmxri/1.2.1/jmxri-1.2.1.jar:/home/bsutton/.m2/repository/junit/junit/4.0/junit-4.0.jar:"/>
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/usr/lib/jvm/java-6-openjdk/jre"/>
-    <property name="sun.java.command" value="/tmp/surefirebooter3578654524059169168.jar /tmp/surefire6199946413248171275tmp /tmp/surefire7673280676068155306tmp"/>
+    <property name="sun.java.command" value="/home/bsutton/git/3dc/convertor/target/surefire/surefirebooter8216026609467884679.jar /home/bsutton/git/3dc/convertor/target/surefire/surefire1259800094331767962tmp /home/bsutton/git/3dc/convertor/target/surefire/surefire5257981759835256320tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="en"/>
     <property name="java.vm.info" value="mixed mode"/>
@@ -50,7 +50,7 @@
     <property name="java.ext.dirs" value="/usr/lib/jvm/java-6-openjdk/jre/lib/ext:/usr/java/packages/lib/ext"/>
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-6-openjdk/jre/lib/resources.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/rt.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/jsse.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/jce.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/charsets.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/netx.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/plugin.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/rhino.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/modules/jdk.boot.jar:/usr/lib/jvm/java-6-openjdk/jre/classes"/>
     <property name="java.vendor" value="Sun Microsystems Inc."/>
-    <property name="localRepository" value="/home/brett/.m2/repository"/>
+    <property name="localRepository" value="/home/bsutton/.m2/repository"/>
     <property name="file.separator" value="/"/>
     <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -58,16 +58,10 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.003" classname="threedc.github.com.CmdLineParserTest" name="threedc.github.com.CmdLineParserTest.test1"/>
-  <testcase time="0.001" classname="threedc.github.com.CmdLineParserTest" name="threedc.github.com.CmdLineParserTest.test2"/>
-  <testcase time="0.001" classname="threedc.github.com.CmdLineParserTest" name="threedc.github.com.CmdLineParserTest.test3"/>
-  <testcase time="0.002" classname="threedc.github.com.CmdLineParserTest" name="threedc.github.com.CmdLineParserTest.test4">
-    <failure message="expected:&lt;...the out...&gt; but was:&lt;...each in...&gt;" type="junit.framework.ComparisonFailure">junit.framework.ComparisonFailure: expected:&lt;...the out...&gt; but was:&lt;...each in...&gt;
-	at junit.framework.Assert.assertEquals(Assert.java:81)
-	at junit.framework.Assert.assertEquals(Assert.java:87)
-	at threedc.github.com.CmdLineParserTest.test4(CmdLineParserTest.java:48)
-</failure>
-  </testcase>
-  <testcase time="0" classname="threedc.github.com.CmdLineParserTest" name="threedc.github.com.CmdLineParserTest.test5"/>
-  <testcase time="0" classname="threedc.github.com.CmdLineParserTest" name="threedc.github.com.CmdLineParserTest.test6"/>
+  <testcase time="0.001" classname="threedc.github.com.CmdLineParserTest" name="test1"/>
+  <testcase time="0.001" classname="threedc.github.com.CmdLineParserTest" name="test2"/>
+  <testcase time="0" classname="threedc.github.com.CmdLineParserTest" name="test3"/>
+  <testcase time="0" classname="threedc.github.com.CmdLineParserTest" name="test4"/>
+  <testcase time="0.001" classname="threedc.github.com.CmdLineParserTest" name="test5"/>
+  <testcase time="0.001" classname="threedc.github.com.CmdLineParserTest" name="test6"/>
 </testsuite>

@@ -14253,3 +14253,543 @@ ERROR - threedc.github.com.util.ParameterException: Unknown units 'inches' at ar
 ERROR - threedc.github.com.util.ParameterException: Unknown units 'inches' at argument 7.
 ERROR - threedc.github.com.util.ParameterException: Unknown units 'microns' at argument 9.
 ERROR - threedc.github.com.util.ParameterException: Invalid option 'src/test/resources/cube.stl' at argument 2.
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Loaded model from: src/test/resources/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/rook.amf
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Loaded model from: src/test/resources/rook.stl
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Loaded model from: src/test/resources/cube.stl
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 12 Verticies:8
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Model: objects:1 triangles: 3682 Verticies:1843
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Loaded model from: src/test/testResults/merged-rook-cube.amf
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Model: objects:2 triangles: 3694 Verticies:1851
+INFO - Done
+INFO - Done
+INFO - Done
+INFO - Done
