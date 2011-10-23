@@ -42,7 +42,7 @@ public class ThreeDConvTest
 	}
 	
 	@Test
-	public void testBroad()
+	public void testBroad() throws Exception
 	{
 		String cmdline = "-v -i src/test/resources/cube.stl -u millimeter -i src/test/resources/kwartzlab.stl -u meter -r 0:0:0 -i src/test/resources/rook.amf -u micron -t 10:10:10 -r 180:0:180 -i src/test/resources/rook.stl -o src/test/resources/result.amf -u feet";
 		String[] args = splitLine(cmdline);
@@ -51,7 +51,7 @@ public class ThreeDConvTest
 	}
 
 	@Test
-	public void testRotation() throws IOException
+	public void testRotation() throws Exception
 	{
 		String cmdline = "-i src/test/resources/extruder_cable_support.stl -u millimeter -r 90:0:0 -o src/test/resources/rotationX90.stl -u millimeter";
 		String[] args = splitLine(cmdline);
@@ -76,7 +76,7 @@ public class ThreeDConvTest
 	}
 
 	@Test
-	public void testTranslation() throws IOException
+	public void testTranslation() throws Exception
 	{
 		String cmdline = "-i src/test/resources/extruder_cable_support.stl -u millimeter -t 100:0:0 -o src/test/resources/translateX10.stl -u millimeter";
 		String[] args = splitLine(cmdline);
@@ -102,7 +102,7 @@ public class ThreeDConvTest
 
 	
 	@Test
-	public void testScale() throws IOException
+	public void testScale() throws Exception
 	{
 		String cmdline = "-i src/test/resources/extruder_cable_support.stl  -t 100:0:0 -o src/test/resources/scaleInches.stl -u inch";
 		String[] args = splitLine(cmdline);

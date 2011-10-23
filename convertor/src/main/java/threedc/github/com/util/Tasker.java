@@ -154,6 +154,11 @@ public class Tasker<T>
 		{
 			return t.toString() + ", cause:" + failCause.getClass() + failCause.getMessage();
 		}
+		
+		public Exception getCause()
+		{
+			return failCause;
+		}
 	}
 
 }

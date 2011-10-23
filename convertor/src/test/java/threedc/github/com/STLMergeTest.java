@@ -38,7 +38,7 @@ public class STLMergeTest
 	}
 
 	@Test
-	public void amfStlRoundTripTestCase()
+	public void amfStlRoundTripTestCase() throws Exception
 	{
 		Decoder decoder;
 		Encoder encoder;

@@ -115,9 +115,10 @@ public class AmfEncodeTest
 	
 	/**
 	 * test to merge two stl files into a single AMF file
+	 * @throws Exception 
 	 */
 	@Test
-	public void mergeTest()
+	public void mergeTest() throws Exception
 	{
 		Decoder decoder;
 		Encoder encoder;
